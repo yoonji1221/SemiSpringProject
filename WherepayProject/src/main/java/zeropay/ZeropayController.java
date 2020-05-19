@@ -1,4 +1,4 @@
-package user;
+package zeropay;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class UserController {
+public class ZeropayController {
 	@Autowired
-	UserService userservice;
+	ZeropayService userservice;
 
 	@RequestMapping("/wherepayhome")
 	public ModelAndView login(HttpServletRequest req) {
@@ -21,6 +21,13 @@ public class UserController {
 		return mav;
 	}
 	
-	
+	@RequestMapping("/dbtest")
+	public ModelAndView dbtest(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		List<ZeropayVO> list = userservice.dbtest();
+		mav.addObject("list", list);
+		mav.setViewName("home");
+		return mav;
+	}
 
 }

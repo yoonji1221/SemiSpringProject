@@ -13,14 +13,10 @@
 <P>  The time on the server is ${serverTime}. </P>
 
 <c:forEach items="${list }" var="userlist"> 
-<h3><tr><td>${userlist.stu_no }
-</td><td>${userlist.stu_name }
-</td><td>${userlist.stu_dept }
-</td><td> ${userlist.stu_grade}
-</td><td> ${userlist.stu_class}
-</td><td> ${userlist.stu_gender}
-</td><td> ${userlist.stu_height}
-</td><td> ${userlist.stu_weight}
+<h3><tr><td>${userlist.z_num }
+</td><td>${userlist.z_name }
+</td><td>${userlist.z_addr }
+</td><td> ${userlist.z_stheme}
 
 </h3>
 </c:forEach>

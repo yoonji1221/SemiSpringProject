@@ -5,7 +5,7 @@
 <mapper namespace="db">
 
 <select id="dbtest" resultType="uservo">
-select * from student
+select * from zeropay where z_stheme = '식료품 소매업'
 </select>
 
 </mapper>
