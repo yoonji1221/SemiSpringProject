@@ -4,7 +4,7 @@
 
 <mapper namespace="db">
 
-<select id="dbtest" resultType="zeropayvo">
+<select id="dbtest" resultType="homevo">
 select * from zeropay where z_stheme = '식료품 소매업'
 </select>
 
