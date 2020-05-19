@@ -1,4 +1,4 @@
-package serviceInfo;
+package serviceinfo;
 
 import java.util.List;
 
