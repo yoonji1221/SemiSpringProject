@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ZeropayController {
 	@Autowired
-	ZeropayService userservice;
+	ZeropayService zeroservice;
 
 	@RequestMapping("/wherepayhome")
 	public ModelAndView login(HttpServletRequest req) {
@@ -22,12 +22,12 @@ public class ZeropayController {
 		return mav;
 	}
 	
-	//�쑄吏�肄붾뱶
+	//윤지주석 ㅋㅋㅋㅋㅋ
 	//test22
 	@GetMapping("/dbtest")
 	public ModelAndView dbtest(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		List<ZeropayVO> list = userservice.dbtest();
+		List<ZeropayVO> list = zeroservice.dbtest();
 		mav.addObject("list", list);
 		mav.setViewName("home");
 		return mav;
