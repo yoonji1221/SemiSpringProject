@@ -26,7 +26,6 @@
 	<context:component-scan base-package="mapping" />
 	<context:component-scan base-package="user" />
 	<context:component-scan base-package="mypage" />
-	<context:component-scan base-package="serviceinfo" />
 	
 	
 	
