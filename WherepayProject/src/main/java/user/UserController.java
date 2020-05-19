@@ -21,13 +21,6 @@ public class UserController {
 		return mav;
 	}
 	
-	@RequestMapping("/dbtest")
-	public ModelAndView dbtest(HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
-		List<UserVO> list = userservice.dbtest();
-		mav.addObject("list", list);
-		mav.setViewName("home");
-		return mav;
-	}
+	
 
 }

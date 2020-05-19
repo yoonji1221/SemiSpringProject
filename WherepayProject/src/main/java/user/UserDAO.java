@@ -12,8 +12,6 @@ public class UserDAO {
 	@Autowired
 	SqlSession session;
 	
-	public List<UserVO> dbtest() {
-		return session.selectList("db.dbtest");
-	}
+	
 	
 }
