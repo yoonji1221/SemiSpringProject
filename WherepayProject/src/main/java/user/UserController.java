@@ -12,8 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
+	
+	
 	@Autowired
 	UserService userservice;
+	
+//	@RequestMapping(value ="/join", method = RequestMethod.POST)
+//	public String join ()
+	
 
 
 }
