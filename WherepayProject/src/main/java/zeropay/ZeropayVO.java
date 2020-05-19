@@ -1,6 +1,9 @@
 package zeropay;
 
 public class ZeropayVO {
+	
+	int shinji;
+	
 	String z_num;
 	String z_name;
 	String z_addr;
