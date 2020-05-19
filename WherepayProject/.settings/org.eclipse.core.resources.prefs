@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/home/HomeController.java=UTF-8
+encoding//src/main/java/mypage/MypageController.java=UTF-8
+encoding//src/main/java/serviceInfo/ServiceinfoController.java=UTF-8
 encoding//src/main/java/user/UserController.java=UTF-8
-encoding//src/main/java/zeropay/ZeropayController.java=UTF-8

@@ -1,4 +1,4 @@
-package zeropay;
+package home;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ZeropayController {
+public class HomeController {
 	@Autowired
-	ZeropayService zeroservice;
+	HomeService zeroservice;
 
 	@RequestMapping("/wherepayhome")
 	public ModelAndView login(HttpServletRequest req) {
@@ -27,7 +27,7 @@ public class ZeropayController {
 	@GetMapping("/dbtest")
 	public ModelAndView dbtest(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		List<ZeropayVO> list = zeroservice.dbtest();
+		List<HomeVO> list = zeroservice.dbtest();
 		mav.addObject("list", list);
 		mav.setViewName("home");
 		return mav;

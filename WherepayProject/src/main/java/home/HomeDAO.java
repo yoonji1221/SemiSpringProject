@@ -1,4 +1,4 @@
-package zeropay;
+package home;
 
 import java.util.List;
 
@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ZeropayDAO {
+public class HomeDAO {
 
 	@Autowired
 	SqlSession session;
 	
-	public List<ZeropayVO> dbtest() {
+	public List<HomeVO> dbtest() {
 		return session.selectList("db.dbtest");
 	}
 	
