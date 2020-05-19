@@ -22,7 +22,8 @@ public class ZeropayController {
 		return mav;
 	}
 	
-	//윤지코드
+	//�쑄吏�肄붾뱶
+	//test22
 	@GetMapping("/dbtest")
 	public ModelAndView dbtest(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
