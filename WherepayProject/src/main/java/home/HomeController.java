@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 	@Autowired
-	HomeService zeroservice;
+	HomeService homeservice;
 
 	@RequestMapping("/wherepayhome")
 	public ModelAndView login(HttpServletRequest req) {
@@ -27,7 +27,7 @@ public class HomeController {
 	@GetMapping("/dbtest")
 	public ModelAndView dbtest(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		List<HomeVO> list = zeroservice.dbtest();
+		List<HomeVO> list = homeservice.dbtest();
 		mav.addObject("list", list);
 		mav.setViewName("home");
 		return mav;
