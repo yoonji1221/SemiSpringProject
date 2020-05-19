@@ -1,6 +1,5 @@
-package serviceInfo;
+package serviceinfo;
 
 public class ServiceinfoVO {
-	
 
 }
