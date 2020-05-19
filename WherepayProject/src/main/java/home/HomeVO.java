@@ -1,6 +1,6 @@
-package zeropay;
+package home;
 
-public class ZeropayVO {
+public class HomeVO {
 	String z_num;
 	String z_name;
 	String z_addr;
