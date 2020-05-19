@@ -8,7 +8,7 @@
 <typeAliases>
 
 
-<typeAlias type="user.UserVO" alias="uservo"/>
+<typeAlias type="zeropay.ZeropayVO" alias="zeropayvo"/>
 <!-- <typeAlias type="mypage.MypageVO" alias="mypagevo"/>
 <typeAlias type="serviceinfo.ServiceinfoVO" alias="serviceinfovo"/> -->
 

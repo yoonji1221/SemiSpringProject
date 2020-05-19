@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,7 +22,8 @@ public class ZeropayController {
 		return mav;
 	}
 	
-	@RequestMapping("/dbtest")
+	//윤지코드
+	@GetMapping("/dbtest")
 	public ModelAndView dbtest(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		List<ZeropayVO> list = userservice.dbtest();

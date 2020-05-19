@@ -22,7 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.wherepay.wherepay" />
-	<context:component-scan base-package="user" />
+	<context:component-scan base-package="zeropay" />
 	<context:component-scan base-package="mapping" />
 	<context:component-scan base-package="mypage" />
 	<context:component-scan base-package="serviceinfo" />
