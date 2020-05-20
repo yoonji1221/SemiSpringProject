@@ -15,7 +15,7 @@ public class HomeController {
 	@Autowired
 	HomeService homeservice;
 
-	@RequestMapping("/wherepayhome")
+	@RequestMapping("/home")
 	public ModelAndView login(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("wherepayhome");
