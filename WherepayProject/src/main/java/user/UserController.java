@@ -18,7 +18,7 @@ public class UserController {
 	UserService userservice;
 	
 //	@RequestMapping(value ="/join", method = RequestMethod.POST)
-//	public String join ()
+//	public String join (volunteerVO vo1, String large1, String )
 	
 
 
