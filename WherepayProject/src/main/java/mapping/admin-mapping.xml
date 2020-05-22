@@ -15,8 +15,6 @@ select * from samsungcard where sam_gu like '%구로구%' or sam_gu like '%관�
 </select>
 
 
-<<<<<<< HEAD
-=======
 <!-- 페이징 처리 위한 총 게시물 수 -->
 <select id="getpaging" resultType="int">
 select count(*) from serviceinfo
@@ -115,9 +113,5 @@ insert into users
 (select mas_num from masters where jumin=#{jumin}), #{familynum})
 </insert>
 
->>>>>>> branch 'master' of https://github.com/yoonji1221/SemiSpringProject.git
 
 </mapper>
-
-
-<!-- 값을 넘길때 # 컬럼 넘길때 $ -->
