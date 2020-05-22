@@ -10,4 +10,10 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDAO dao;
 
+	@Override
+	public List<UserVO> join(UserVO vo) {
+		
+		return null;
+	}
+
 }
