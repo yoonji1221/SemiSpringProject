@@ -55,5 +55,6 @@ public class MypageController {
 		return "redirect:/household?mas_num=" + mas_num;
 	}
 
+	
 
 }
