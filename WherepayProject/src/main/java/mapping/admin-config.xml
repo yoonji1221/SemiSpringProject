@@ -12,6 +12,9 @@
 <typeAlias type="mypage.MypageVO" alias="mypagevo"/>
  
 
+<typeAlias type="user.MasVO" alias="masvo"/>
+<typeAlias type="serviceinfo.InfoVO" alias="infovo"/>
+<typeAlias type="serviceinfo.PagingVO" alias="pagingvo"/>
 </typeAliases>
 
 

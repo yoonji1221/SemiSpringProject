@@ -15,5 +15,6 @@ public class MypageController {
 	@Autowired
 	MypageService mypageservice;
 
+	
 
 }
