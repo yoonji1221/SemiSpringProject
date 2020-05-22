@@ -9,10 +9,6 @@ select * from zeropay where z_stheme = '식료품 소매업'
 </select>
 
 
-<!-- 신지 test -->
-
-
-
 
 </mapper>
 

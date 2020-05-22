@@ -9,7 +9,8 @@
 
 <typeAlias type="home.HomeVO" alias="homevo"/>
 <typeAlias type="user.UserVO" alias="uservo"/>
- <typeAlias type="mypage.MypageVO" alias="mypagevo"/>
+<typeAlias type="mypage.MypageVO" alias="mypagevo"/>
+ 
 
 </typeAliases>
 

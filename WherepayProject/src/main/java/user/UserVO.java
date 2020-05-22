@@ -14,8 +14,38 @@ public class UserVO {
 	int confirm;
 	int mas_num;
 	String familynum;
+
+	String jumin;
+
+
+	public UserVO() {};
+
+	//회원가입 insert할 때 담아갈 vo
+	public UserVO(UserVO vo) {
+		setName(getName());
+		setJumin(getJumin());
+		setId(getId());
+		setPw(getPw());
+		setPhone(getPhone());
+		setAddr(getAddr());
+		setFamilynum(getFamilynum());
+		setHowtoget(getHowtoget());
+	}
 	
 	
+	
+	
+	
+	
+	public String getJumin() {
+		return jumin;
+	}
+
+
+	public void setJumin(String jumin) {
+		this.jumin = jumin;
+	}
+
 	public int getU_num() {
 		return u_num;
 	}

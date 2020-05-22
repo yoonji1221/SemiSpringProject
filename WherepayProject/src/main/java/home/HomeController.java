@@ -27,7 +27,9 @@ public class HomeController {
 	@GetMapping("/dbtest")
 	public ModelAndView dbtest(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		System.out.println("dbtest");
 		List<HomeVO> list = homeservice.dbtest();
+		System.out.println(list.size());
 		mav.addObject("list", list);
 		mav.setViewName("home");
 		return mav;
