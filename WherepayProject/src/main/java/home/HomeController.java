@@ -104,7 +104,8 @@ public class HomeController {
 	@GetMapping("/dbtest")
 	public ModelAndView dbtest(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-
+		System.out.println("dbtest");
+	
 		List<HomeVO> zerolist = homeservice.zerodata();
 		List<HomeVO> samlist = homeservice.samsungdata();
 		mav.addObject("list", samlist);

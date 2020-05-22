@@ -115,3 +115,132 @@ insert into users
 
 
 </mapper>
+<<<<<<< HEAD
+=======
+
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="db">
+
+<!-- 구로구 제로페이 데이터 -->
+<select id="zerodata" resultType="homevo">
+select * from zeropay where z_addr like '%구로구%' or z_addr like '%관악구%'
+</select>
+
+<!-- 구로구 삼성카드 데이터 -->
+<select id="samsungdata" resultType="homevo">
+select * from samsungcard where sam_gu like '%구로구%' or sam_gu like '%관악구%'
+</select>
+
+
+<<<<<<< HEAD
+=======
+<!-- 페이징 처리 위한 총 게시물 수 -->
+<select id="getpaging" resultType="int">
+select count(*) from serviceinfo
+</select>
+
+<!-- 서비스 페이징 -->
+<select id="infoPaging" resultType="infovo" parameterType="pagingvo">
+select *
+from
+(SELECT A.*,ROWNUM AS RNUM FROM(SELECT * FROM serviceinfo ORDER BY info_num desc) A)
+where rnum between  #{start} and #{end}
+</select>
+
+<!-- 서비스 상세 조회 -->
+<select id="infoDetail" resultType="infovo" parameterType= "int">
+select * from serviceinfo where info_num = #{info_num}
+</select>
+   
+<!-- 검색 분류 구 얻어오기 -->
+<select id="getGu" resultType="homevo">
+ select distinct sam_gu from samsungcard
+</select>
+<!-- 검색 분류 업종별 얻어오기 -->
+<select id="category" resultType="homevo">
+ select distinct sam_btheme from samsungcard
+</select>   
+   
+<!--삼성카드 지역 + 업종 검색 -->
+<select id="getAlllist" resultType="homevo" parameterType="homevo">
+ select * from samsungcard where sam_gu = #{sam_gu} and sam_btheme = #{sam_btheme}
+</select> 
+
+<!--삼성카드 지역만 검색 -->
+<select id="regionResult" resultType="homevo" parameterType="homevo">
+ select * from samsungcard where sam_gu = #{sam_gu}
+</select> 
+
+<!--삼성카드 업종만 검색 -->
+<select id="categoryResult" resultType="homevo" parameterType="homevo">
+ select * from samsungcard where sam_btheme = #{sam_btheme}
+</select>  
+
+<!--제로페이 지역 + 업종 검색 -->
+<select id="zeroAlllist" resultType="homevo" parameterType="homevo">
+ select * from zeropay where z_addr like  '%' || #{z_addr} || '%' and z_btheme = #{z_btheme}
+</select> 
+
+<!--제로페이 지역만 검색 -->
+<select id="zeroregionResult" resultType="homevo" parameterType="homevo">
+ select * from zeropay where z_addr like '%' || #{z_addr} || '%'
+</select> 
+
+<!--제로페이 업종만 검색 -->
+<select id="zerocategoryResult" resultType="homevo" parameterType="homevo">
+ select * from zeropay where z_btheme = #{z_btheme}
+</select>     
+
+
+<!-- 효진 query -->
+<!-- 구성원 확인하기 -->
+<select id="checkUser" resultType="uservo" parameterType = "int">
+select * from users where mas_num = #{mas_num}
+</select>
+
+<!-- 구성원 신청 허락하기 -->
+ <update id="updateConfirm" parameterType = "int">
+update users set confirm = 2 where u_num = #{u_num}
+</update>
+
+<!-- 가계부 총 지원금 확인하기 -->
+<select id = "totalMoney" resultType="uservo" parameterType = "int">
+select familynum, howtoget from users where confirm = 0 and mas_num = #{mas_num}
+</select>
+
+<!--  ======================================  신지 test   ==================================== -->
+
+
+<!-- 세대주인지 확인하기 -->
+<select id="masCheck" resultType ="int" parameterType ="masvo">
+select count(*)
+from masters   
+where ((select mas_name from masters where jumin= #{jumin})= #{name} and jumin=#{jumin})
+</select>
+
+<!-- id 유효성 검사 -->
+<select id="idCheck" resultType ="int" parameterType="String">
+select count(*) from users
+where id =#{id}
+</select>
+
+<!-- 세대주 회원가입 -->
+<insert id = "join" parameterType="uservo">
+insert into users 
+(u_num, id, pw, name, phone, addr, howtoget, confirm, mas_num, familynum) values
+(user_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, #{addr}, #{howtoget}, 0, 
+(select mas_num from masters where jumin=#{jumin}), #{familynum})
+</insert>
+
+>>>>>>> branch 'master' of https://github.com/yoonji1221/SemiSpringProject.git
+
+</mapper>
+
+
+>>>>>>> branch 'master' of https://github.com/yoonji1221/SemiSpringProject.git
+<!-- 값을 넘길때 # 컬럼 넘길때 $ -->
+>>>>>>> branch 'master' of https://github.com/yoonji1221/SemiSpringProject.git
