@@ -10,21 +10,105 @@
 <script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
 <title>WHERE PAY에 오신 걸 환영합니다!</title>
+<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+
 </head>
-<body> 
-	<h1>WHERE PAY HOME!</h1>
-			<h4>&nbsp;&nbsp;&nbsp;&nbsp;지급 유형 선택</h4>
+<body  data-aos-easing="ease-in-out-back" data-aos-duration="1000" data-aos-delay="0">
+
+<section id="hero" class="d-flex justify-cntent-center align-items-center" style="height: 600px;">
+    <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
+ <!-- Slide 2 -->
+      <div class="carousel-item active">
+        <div class="carousel-container">
+           <h2 class="animated fadeInDown">Welcome to <span>WHEREPAY</span></h2>
+					<p class="dot" style="    margin-left: 150px;   margin-right: 150px;  width: 750px;">
+						<strong>코로나19</strong>의 <strong>글로벌 대유행</strong>(pandemic)에 따라,
+				 <strong>소비심리 위축</strong> 등으로 경제적 타격을 입은 국민들을 지원하기 위해 정부에서 시행하는 현금 지원 대책이다.
+				  당초 정부는 소득 하위 70%에 4인가구 기준으로 100만 원의 긴급재난지원금을 지급한다고 밝혔으나, 이후 당정 협의 등을 통해 전 국민 지급 방안을 결정했다. 
+				  그리고 4월 29일 국회에서 긴급재난지원금 지급을 위한 2차 추경안이 통과되면서 긴급재난지원금은 선불카드, 신용카드 포인트, 지역상품권 등의 형태로 2020년 5월부터 전 국민에게 지급된다.	</p>
+	<a href="https://www.xn--jj0bb2kr6h965bxcbp8g.kr/sub_02.jsp" class="btn-get-started animated fadeInUp">신청방법 알아보기</a>
+        </div>
+      </div>
+ </div>
+  </section>
+  <main id="main" style="margin-top: 0px;">
+  
+  <section class="skills aos-init aos-animate" data-aos="fade-up">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>전 세계 '코로나바이러스감염증-19' 발생 현황</h2>
+          <p><i class="icofont-check"></i>국가별 확진자,사망자 수는 <중앙재난안전대책본부> '국외 발생현황'의 국가별 '환자발생 수(사망)'정보.[대륙(러시아 등)의 구분 정보는 일부 다를 수 있음].
+          <br><i class="icofont-check"></i>인구 출처: IMF (2020년 3월 19일 기준) 등</p>
+        </div>
+
+        <div class="skills-content">
+
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+              <span class="skill">미국 <i class="val">1,618,948명</i></span>
+            </div>
+          </div>
+
+          <div class="progress">
+            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+              <span class="skill">브라질 <i class="val">347,398명</i></span>
+            </div>
+          </div>
+
+          <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+              <span class="skill">러시아 <i class="val">335,882명</i></span>
+            </div>
+          </div>
+
+          <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%;">
+              <span class="skill">영국 <i class="val">257,154명</i></span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  
+    <!-- ======= Features Section ======= -->
+    <section class="features" style="margin-top: 0px;padding-top: 0px;">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>내 주변 가맹점 한 눈에 보기</h2>
+          <p>지급 유형에 따른 내 주변 가맹점, 한 눈에 확인하세요!</p>
+        </div>
+
+        <div class="row aos-init aos-animate" data-aos="fade-up" style="width: 1000px;">
+          <div class="col-md-5"style="  padding-top: 30px;" align='right'>
 			<ul>
 				<li><input type="radio" name="radiovalue" value="1"
-					onclick="check();">신용/체크카드</li>
+					onclick="check();">신용/체크카드&nbsp; <img src="${pageContext.request.contextPath}/resources/Moderna/assets/img/marker_red.png" 
+					style="width: 23px; height:28px;"></li>
 				<li><input type="radio" name="radiovalue" value="2"
-					onclick="check1();">선불카드</li>
+					onclick="check1();">선불카드&nbsp;<img src="${pageContext.request.contextPath}/resources/Moderna/assets/img/marker.png" 
+					style="width: 20px; height:25px;"> </li>
 				<li><input type="radio" name="radiovalue" value="2"
-					onclick="check1();">서울사랑상품권</li>
+					onclick="check1();">서울사랑상품권&nbsp;<img src="${pageContext.request.contextPath}/resources/Moderna/assets/img/marker.png" 
+					style="width: 20px; height:25px;"> </li>
 			</ul>
-				<input id="button1" type=button value="내 지역 조회하러 가기" class="btn" onclick="location.href='/wherepay/search'">         
+				<input id="button1" class="btn-get-started animated fadeInUp" type=button value="내 지역 조회하러 가기" onclick="location.href='/wherepay/search'">         
           
-		<div id="map" style="width: 700px; height: 500px; margin-left: 300px;"></div>
+          </div>
+          <div class="col-md-7 pt-4">
+         <div id="map" style="width: 700px; height: 500px;"></div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Features Section -->
+
+  </main>
+
+		
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=109901ab932f557de01522d4798dad18&libraries=services"></script>
 	<script>
 	
@@ -290,6 +374,11 @@
 		// marker.setMap(null);
 	</script>
 
-
 </body>
+
+
+<!-- footer add -->
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+
+
 </html>

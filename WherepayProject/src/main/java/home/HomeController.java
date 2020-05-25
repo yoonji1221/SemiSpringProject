@@ -26,7 +26,7 @@ public class HomeController {
 		mav.setViewName("wherepayhome");
 		return mav;
 	}
-
+	
 	//검색 페이지
 	@GetMapping("/search")
 	public ModelAndView search(HttpServletRequest req) {
@@ -100,6 +100,28 @@ public class HomeController {
 		return resultlist;
 	}
 		
+	//삼성카드 상세 검색 페이지
+	@GetMapping("/search/detail1")
+	public ModelAndView samdetailresult(@RequestParam(value="sam_num", required = false) int sam_num) {
+		ModelAndView mav = new ModelAndView();
+		List<HomeVO> detailresult = homeservice.detailresult(sam_num);
+		mav.addObject("detailresult", detailresult);
+		mav.setViewName("searchdetail");
+		return mav;
+	}
+	//제로페이 상세 검색 페이지
+	@GetMapping("/search/detail2")
+	public ModelAndView zerodetailresult(@RequestParam(value="z_num", required = false) int z_num) {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("?????????????????");
+		List<HomeVO> detailresult = homeservice.zeroresult(z_num);
+		System.out.println(detailresult.size()+"::::::::::");
+		mav.addObject("detailresult", detailresult);
+		mav.setViewName("searchdetail2");
+		return mav;
+	}
+	
+	
 	// dbtest
 	@GetMapping("/dbtest")
 	public ModelAndView dbtest(HttpServletRequest req) {

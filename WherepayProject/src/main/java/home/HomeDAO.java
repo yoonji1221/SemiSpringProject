@@ -42,5 +42,11 @@ public class HomeDAO {
 	public List<HomeVO> zerocategoryResult(HomeVO vo) {
 		return session.selectList("db.zerocategoryResult",vo);
 	}
+	public List<HomeVO> detailresult(int sam_num) {
+		return session.selectList("db.detailresult",sam_num);
+	}
+	public List<HomeVO> zeroresult(int z_num) {
+		return session.selectList("db.zeroresult",z_num);
+	}
 	
 }

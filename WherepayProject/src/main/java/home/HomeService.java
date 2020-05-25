@@ -23,5 +23,8 @@ public interface HomeService {
 	public List<HomeVO> zeroregionResult(HomeVO vo);
 
 	public List<HomeVO> zerocategoryResult(HomeVO vo);
-
+	
+	public List<HomeVO> detailresult(int sam_num);
+	
+	public List<HomeVO> zeroresult(int z_num);
 }
