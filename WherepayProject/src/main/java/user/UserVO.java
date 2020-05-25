@@ -16,6 +16,8 @@ public class UserVO {
 	String familynum;
 
 	String jumin;
+	
+
 
 
 	public UserVO() {};
@@ -30,13 +32,18 @@ public class UserVO {
 		setAddr(getAddr());
 		setFamilynum(getFamilynum());
 		setHowtoget(getHowtoget());
+		
+		setMas_num(getMas_num());
+		
+		
+		//세대주 기가입자 체크용
+		setConfirm(getConfirm());
+		
 	}
 	
+
 	
-	
-	
-	
-	
+
 	public String getJumin() {
 		return jumin;
 	}
