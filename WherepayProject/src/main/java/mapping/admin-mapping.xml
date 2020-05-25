@@ -70,10 +70,21 @@ select * from serviceinfo where info_num = #{info_num}
 <!--제로페이 업종만 검색 -->
 <select id="zerocategoryResult" resultType="homevo" parameterType="homevo">
  select * from zeropay where z_btheme = #{z_btheme}
-</select>     
+</select>   
+  
+<!--삼성카드 검색 detail -->
+<select id="detailresult" resultType="homevo" parameterType="int">
+ select * from samsungcard where sam_num = #{sam_num}
+</select> 
+
+<!-- 제로페이 검색 detail -->
+<select id="zeroresult" resultType="homevo" parameterType="int">
+ select * from zeropay where z_num = #{z_num}
+</select> 
 
 
-<!-- 효진 query -->
+<!-- ================================= 효진 query=========================================== -->
+
 <!-- 구성원 확인하기 -->
 <select id="checkUser" resultType="uservo" parameterType = "int">
 select * from users where mas_num = #{mas_num}
@@ -89,8 +100,55 @@ update users set confirm = 2 where u_num = #{u_num}
 select familynum, howtoget from users where confirm = 0 and mas_num = #{mas_num}
 </select>
 
+<!-- 신용카드/체크카드 사용시 sql -->
+<insert id = "insertPayment" parameterType="paymentvo">
+insert into payment(paydate, money, pay_num, u_num, mas_num, sam_num, memo) values 
+(TO_DATE(#{paydate}, 'YYYY-MM-DD'), #{money}, payment_seq.nextval, #{u_num}, #{mas_num}, #{sam_num}, #{memo})
+</insert>
+
+<!-- 제로페이 사용시 sql -->
+<insert id = "insertPaymentZ" parameterType="paymentvo">
+insert into payment(paydate, money, z_num, pay_num, u_num, mas_num, memo) values 
+(TO_DATE(#{paydate}, 'YYYY-MM-DD'), #{money}, #{z_num}, payment_seq.nextval, #{u_num}, #{mas_num}, #{memo})
+</insert>
+
+<!-- 지출내역 확인하기 - 카드 -->
+<select id = "showpayment" resultType="paymentvo" parameterType = "int">
+select TO_CHAR(p.paydate,'YYYY-MM-DD') as paydate, p.money, s.sam_name, u.name, p.memo from payment p, samsungcard s, users u 
+where p.sam_num = s.sam_num and p.u_num = u.u_num and p.mas_num = #{mas_num} ORDER BY paydate
+</select>
+
+<!-- 지출내역 확인하기 - 제로 -->
+<select id = "showpayment_zero" resultType="paymentvo" parameterType = "int">
+select TO_CHAR(p.paydate,'YYYY-MM-DD') as paydate, p.money, z.z_name, u.name, p.memo from payment p, zeropay z, users u 
+where p.z_num = z.z_num and p.u_num = u.u_num and p.mas_num = #{mas_num} ORDER BY paydate
+</select>
+
+<!-- 사용내역 총합 -->
+<select id = "useMoneyTotal" resultType="int" parameterType = "int">
+select SUM(money) as total from payment where mas_num = #{mas_num}
+</select>
+
+
 <!--  ======================================  신지 test   ==================================== -->
 
+<!-- 로그인 -->
+<select id ="login" resultType="int" parameterType="uservo">
+select count(*)
+from users
+where id=#{id} and pw=#{pw}
+</select>
+
+<!-- 세대주 가입 - 기 가입자:1/ 미가입자:0 -->
+<select id ="alreadyJoin" resultType="int" parameterType="String">
+select count(*)
+from users u, masters m
+where u.mas_num = m.mas_num
+and m.mas_num =(select mas_num 
+from users
+where id=#{id})
+and u.confirm=0
+</select>
 
 <!-- 세대주인지 확인하기 -->
 <select id="masCheck" resultType ="int" parameterType ="masvo">
@@ -105,12 +163,41 @@ select count(*) from users
 where id =#{id}
 </select>
 
+<!-- 가족 구성원 수 이상으로 가입X -->
+<select id="fnumCheck" resultType ="int" parameterType ="String">
+select count(*)
+from users
+where mas_num = 
+(select mas_num 
+from users
+where id=#{id})
+</select>
+
 <!-- 세대주 회원가입 -->
 <insert id = "join" parameterType="uservo">
 insert into users 
 (u_num, id, pw, name, phone, addr, howtoget, confirm, mas_num, familynum) values
 (user_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, #{addr}, #{howtoget}, 0, 
 (select mas_num from masters where jumin=#{jumin}), #{familynum})
+</insert>
+
+<!-- 세대주 검색 -->
+<select id="masSelect" resultType ="int" parameterType="String">
+select count(*) from users
+where id =#{id} and confirm=0
+</select>
+
+<select id ="autoSelect" resultType="uservo" parameterType="String">
+select addr, howtoget, mas_num, familynum from users where id=#{mas_id}
+</select>
+
+
+<!-- 구성원 회원가입 -->
+<insert id = "joinMember" parameterType="uservo" >
+insert into users 
+(u_num, id, pw, name, phone, addr, howtoget, confirm, mas_num, familynum) values
+(user_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, #{addr}, #{howtoget}, 1,
+#{mas_num}, #{familynum})
 </insert>
 
 
