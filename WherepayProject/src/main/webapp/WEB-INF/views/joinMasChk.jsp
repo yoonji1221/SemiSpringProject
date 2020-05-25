@@ -23,14 +23,14 @@ $(document).ready(function(){
 
 		$.ajax({
 			type : 'get',
-			url :'/wherepay/join2/check?jumin='+jumin+'&name='+name,
+			url :'/wherepay/joinmaster1/check?jumin='+jumin+'&name='+name,
 			success : function(data){			
 				console.log("가져온 데이터"+data);
 				if (data == 1){
 					alert("사용가능한 세대주임><");
 					//redirect로 이동하도록
-					window.location.href = "/wherepay/join";
-					saveSessionStorage();
+					window.location.href = "/wherepay/joinmaster2";
+			//		saveSessionStorage();
 				}else{
 					alert("사용가능한 세대주 아님><");
 				}
@@ -49,33 +49,7 @@ $(document).ready(function(){
 
 });	//function end
 
-		//session출력
-		 function printSessionStorage() {
-
-		        var output = "";
-
-		        // div 태그에 로컬 저장소의 내용을 출력한다.
-		        for(var key in window.sessionStorage) {
-		            output += "<p>";
-		            // getItem( ) 메서드를 이용하여 key 값의 value 값을 찾는다.
-		            output += key + " : " + sessionStorage.getItem(key);
-		            output += "</p>";
-		        }
-		        
-		        document.getElementById("output").innerHTML = output;
-		    }
-		//session에 저장하는 함수
-		function saveSessionStorage(){
-			
-			
-			var key = document.getElementByID("key").value;
-			var value = document.getElementByID("value").value;
-			
-			sessionStorage.setItem(key, value);
-			
-			printSessionStorage();
-			
-		}
+	
 	
 </script>
 
@@ -89,24 +63,19 @@ $(document).ready(function(){
 
  <h5>세대주 확인</h5>
  
- 	 <form action="<%=path %>/join2/check" name="mascheck" method="get" >
+ 	 <form action="<%=path %>/joinmaster1/check" name="mascheck" method="get" >
  	 <table class="table">
   		<tbody>
   		
                  <tr>
                   <td>
-                      <strong>이름</strong>
+                      <strong>이름</strong> 
                   </td>
                   <td>
                 
-                    <input type="text" id="key"name="name" 
+                       <input type="text" id="name"name="name" 
                     placeholder="이름을 입력하세요" >
                     
-                    <input type="text" id="value"name="name" 
-                    placeholder="이름을 입력하세요" >
-                    
-                     <input type="button" value="session저장" onClick="saveSessionStorage();"/>
-  					  <input type="button" value="session출력" onClick="printSessionStorage();"/>
                     
                   </td>
                  </tr>
@@ -125,14 +94,9 @@ $(document).ready(function(){
  	
  	 <input id="button1" type=button value="세대주 여부 확인" >
  	 
- 	 <div id="output">
-        <!-- 저장된 내용을 출력할 DIV 엘리먼트 -->
-    </div>
  	 
  	 
 	</form>
-
-
 
 
 
