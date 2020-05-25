@@ -10,7 +10,13 @@
 <script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
 <title>WHERE PAY에 오신 걸 환영합니다!</title>
-
+<script>
+function setParentText(name, num){
+    opener.document.getElementById("ppInput").value = name
+    opener.document.getElementById("pInput").value = num
+    window.close();
+}
+</script>
 
 </head>
 <body>
@@ -29,6 +35,25 @@
 <c:set var="sam_addr" value="${detaillist.sam_gu} ${detaillist.sam_dong} ${detaillist.sam_addr}" />
 </c:forEach>
 
+
+<c:forEach items="${detailresult2 }" var="detaillist">
+<tr><td >${detaillist.z_num }
+</td><td>${detaillist.z_name }
+</td><td>${detaillist.z_addr}
+</td><td> ${detaillist.z_btheme}
+</td><td> ${detaillist.z_stheme}
+</td><td> ${detaillist.z_manager}
+</td>
+</tr>
+<c:set var="sam_num" value="${detaillist.z_num }" />
+<c:set var="sam_name" value="${detaillist.z_name }" />
+<c:set var="sam_addr" value="${detaillist.z_addr}" />
+</c:forEach>
+
+
+<br> <button id='hi'  onclick="setParentText('${sam_name }', '${sam_num }');">선택</button>
+
+ <!-- 
       <div id="map" style="width: 700px; height: 500px;"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=109901ab932f557de01522d4798dad18&libraries=services"></script>
 <script>
@@ -106,6 +131,6 @@ sam_addrlist.forEach(function(addr, index) {
 
 
 </script>   
-            
+         -->   
 </body>
 </html>
