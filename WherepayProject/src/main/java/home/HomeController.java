@@ -104,18 +104,12 @@ public class HomeController {
 	@GetMapping("/dbtest")
 	public ModelAndView dbtest(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-<<<<<<< HEAD
 		System.out.println("dbtest");
-		List<HomeVO> list = homeservice.dbtest();
-		System.out.println(list.size());
-		mav.addObject("list", list);
-=======
-
+	
 		List<HomeVO> zerolist = homeservice.zerodata();
 		List<HomeVO> samlist = homeservice.samsungdata();
 		mav.addObject("list", samlist);
 		mav.addObject("zerolist", zerolist);
->>>>>>> branch 'master' of https://github.com/yoonji1221/SemiSpringProject.git
 		mav.setViewName("home");
 		return mav;
 	}

@@ -2,6 +2,7 @@ package mypage;
 
 import java.util.List;
 
+import home.HomeVO;
 import user.UserVO;
 
 public interface MypageService {
@@ -14,5 +15,24 @@ public interface MypageService {
 	
 	//총 지원금 확인
 	public List<UserVO> getFamilynum(int mas_num);
+	
+	public int insertPayment(paymentVO vo);
+	
+	public int insertPaymentZ(paymentVO vo);
+	
+	//디테일 매장 검색 - 카드
+	public List<HomeVO> detaillist(int sam_num);
+	
+	//디테일 매장 검색 - 제로
+	public List<HomeVO> detaillist2(int zero_num);
+	
+	//지출 내역 확인하기 - 카드
+	public List<paymentVO> showpayment_card(int mas_num);
+	
+	//지출 내역 확인하기 - 제로
+	public List<paymentVO> showpayment_zero(int mas_num);
+	
+	//사용 내역 총합
+	public int useMoney(int mas_num);
 
 }

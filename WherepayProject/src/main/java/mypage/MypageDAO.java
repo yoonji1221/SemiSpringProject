@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import home.HomeVO;
 import user.UserVO;
 
 @Component
@@ -26,6 +27,44 @@ public class MypageDAO {
 	public List<UserVO> getFamilynum(int mas_num) {
 		List<UserVO> list = session.selectList("db.totalMoney", mas_num);
 		return list;
+	}
+	
+	//가계부 입력
+	public int insertPayment(paymentVO vo) {
+		return session.insert("db.insertPayment", vo);
+	}
+	
+	public int insertPaymentZ(paymentVO vo) {
+		return session.insert("db.insertPaymentZ", vo);
+	}
+	
+	//디테일 매장 검색 - 카드
+	public List<HomeVO> detaillist(int sam_num){
+		List<HomeVO> list = session.selectList("db.detailresult", sam_num);
+		return list;
+	}
+	
+	//디테일 매장 검색 - 제로
+	public List<HomeVO> detaillist2(int zero_num){
+		List<HomeVO> list = session.selectList("db.zeroresult", zero_num);
+		return list;
+	}
+		
+	//지출 내역 확인하기 - 카드
+	public List<paymentVO> showpayment_card(int mas_num){
+		List<paymentVO> list = session.selectList("db.showpayment", mas_num);
+		return list;
+	}
+	
+	//지출 내역 확인하기 - 제로
+	public List<paymentVO> showpayment_zero(int mas_num){
+		List<paymentVO> list = session.selectList("db.showpayment_zero", mas_num);
+		return list;
+	}
+	
+	//사용 내역 총합
+	public int useMoney(int mas_num) {
+		return session.selectOne("db.useMoneyTotal", mas_num);
 	}
 
 }
