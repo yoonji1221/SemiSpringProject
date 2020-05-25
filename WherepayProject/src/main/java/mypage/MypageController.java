@@ -109,7 +109,7 @@ public class MypageController {
 	}
 	
 	//디테일 매장 검색 - 카드
-	@GetMapping("/search/detail1")
+	@GetMapping("/search/detail11")
 	public ModelAndView searchMarketDetail(@RequestParam(value = "sam_num") int sam_num) {
 		 ModelAndView mav = new ModelAndView();
 		 List<HomeVO> list = mypageservice.detaillist(sam_num);
@@ -119,7 +119,7 @@ public class MypageController {
 	}
 	
 	//디테일 매장 검색 - 제로
-	@GetMapping("/search/detail2")
+	@GetMapping("/search/detail22")
 	public ModelAndView searchMarketDetail2(@RequestParam("z_num") int z_num) {
 		 ModelAndView mav = new ModelAndView();
 		 List<HomeVO> list = mypageservice.detaillist2(z_num);

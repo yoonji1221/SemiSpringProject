@@ -58,6 +58,15 @@ public class HomeServiceImpl implements HomeService {
 	public List<HomeVO> zerocategoryResult(HomeVO vo) {
 		return dao.zerocategoryResult(vo);
 	}
+
+	@Override
+	public List<HomeVO> detailresult(int sam_num) {
+		return dao.detailresult(sam_num);
+	}
+	@Override
+	public List<HomeVO> zeroresult(int z_num) {
+		return dao.zeroresult(z_num);
+	}
 	
 	
 }

@@ -39,17 +39,16 @@ function button1_click() {
 	                var sam_stheme = resultlist[idx]['sam_stheme']
 	                var sam_phone = resultlist[idx]['sam_phone']
 	     
-	                var all = $("<tr><td>"+sam_num+"</td><td>"+sam_name+"</td><td>"+sam_gu+"&nbsp;"+sam_dong+"&nbsp;"+sam_addr+"</td><td>"+sam_btheme+"</td><td>"+sam_stheme+"</td><td>"+sam_phone+"</td>");                   
+	                var all = $("<tr><td>"+sam_num+"</td><td><a href='/wherepay/search/detail1?sam_num="+sam_num+"'>"+sam_name+"</a></td><td>"+sam_gu+"&nbsp;"+sam_dong+"&nbsp;"+sam_addr+"</td><td>"+sam_btheme+"</td><td>"+sam_stheme+"</td><td>"+sam_phone+"</td>");                   
 					$("#table2").append(all);
-	             }
-	              
+	             }   
 	             }, error : function(e) {
 	                console.log(e);
 	             }
 	          });   
 	}
 	
-	if(value == 2 || value==3){ //신용카드 선택 - 삼성카드 데이터 조회
+	if(value == 2 || value==3){ //선불카드, 상품권 선택 제로페이 데이터 조회
 		 $("#table2").remove();
 		var sam_gu = $("#address option:selected").val();
 	    var sam_btheme = $("#category option:selected").val();
@@ -71,7 +70,7 @@ function button1_click() {
 	                var z_btheme = resultlist[idx]['z_btheme']
 	                var z_manager = resultlist[idx]['z_manager']
 	                
-	                var all = $("<tr><td>"+z_num+"</td><td>"+z_name+"</td><td>"+z_addr+"&nbsp;"+z_btheme+"&nbsp;"+z_stheme+"</td><td>"+z_manager+"</td>");                   
+	                var all = $("<tr><td>"+z_num+"</td><td><a href='/wherepay/search/detail2?z_num="+z_num+"'>"+z_name+"</a></td><td>"+z_addr+"&nbsp;"+z_btheme+"&nbsp;"+z_stheme+"</td><td>"+z_manager+"</td>");                   
 					$("#table2").append(all);
 	             }
 	              
