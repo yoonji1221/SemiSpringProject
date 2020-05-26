@@ -6,17 +6,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
+
 <meta charset="UTF-8">
 <title>Mypage</title>
-<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+<%-- <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>--%>
 
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
 function cardPopup() { 
@@ -28,10 +29,9 @@ function zeroPopup() {
 	var url = "/wherepay/searchMarket2";
 	window.open(url, "b", "width=800, height=400, left=100, top=50"); 
 	}
-	
+
 function test(){
 	$(function() {
-		alert("test");
 		$("#paydate").datepicker({
 			dateFormat : 'yy-mm-dd'
 		});
@@ -55,7 +55,7 @@ function test(){
 					<div class="container">
 						<div class="section-title">
 							<div class="d-flex justify-content-between align-items-center">
-								<h2 style="color: #000080;">${userlist.name}세대주님의  마이페이지</h2>
+								<h2 style="color: #000080;">${userlist.name}님의  마이페이지</h2>
 							</div>
 						</div>
 					</div>
@@ -211,6 +211,9 @@ function test(){
 				    &nbsp;&nbsp;<label for="exampleInputStore"  >메모 &nbsp;</label>
 				     <input type="text" id="memo" name="memo"  style="width:200px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  </div>
+				  
+				  <input type="hidden" id="mas_num" name="mas_num" value='${mas_num}'>	
+				  <input type="hidden" id="u_num" name="u_num" value='<%=request.getParameter("u_num")%>'>				
 	
 				  <button type="submit" class="btn btn-primary" style="background-color:#1e4356;color:#ffffff;padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">입력</button>
 	
@@ -242,6 +245,7 @@ function test(){
 							<th>사용 매장</th>
 							<th>사용자</th>
 							<th>메모</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -252,6 +256,9 @@ function test(){
 								<td>${cardlist.sam_name }</td>
 								<td>${cardlist.name }</td>
 								<td>${cardlist.memo }</td>
+								<td>${cardlist.pay_num }</td>
+								<td>${cardlist.u_num }</td>
+								<td> <button onclick ="location.href='/wherepay/deletePayment?u_num=2&pay_num=182'" class="btn btn-primary" style="background-color:#1e4356;color:#ffffff;padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">삭제</button></td>
 							</tr>
 						</c:forEach>
 
@@ -262,6 +269,7 @@ function test(){
 								<td>${zerolist.z_name }</td>
 								<td>${zerolist.name }</td>
 								<td>${zerolist.memo }</td>
+								<td> <button class="btn btn-primary" style="background-color:#1e4356;color:#ffffff;padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">삭제</button></td>
 							</tr>
 						</c:forEach>
 
@@ -275,5 +283,5 @@ function test(){
 
 
 </body>
-<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+<%-- <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>--%>
 </html>

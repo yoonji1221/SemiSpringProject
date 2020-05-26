@@ -78,6 +78,12 @@ public class MypageServiceImpl implements MypageService {
 	public List<HomeVO> category() {
 		return dao.category();
 	}
+
+	//지출내역 삭제
+	public void deletePayment(paymentVO vo) {
+		dao.deletePayment(vo);
+	}
+
 	
 
 	

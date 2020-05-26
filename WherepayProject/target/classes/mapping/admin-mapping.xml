@@ -114,7 +114,7 @@ insert into payment(paydate, money, z_num, pay_num, u_num, mas_num, memo) values
 
 <!-- 지출내역 확인하기 - 카드 -->
 <select id = "showpayment" resultType="paymentvo" parameterType = "int">
-select TO_CHAR(p.paydate,'YYYY-MM-DD') as paydate, p.money, s.sam_name, u.name, p.memo from payment p, samsungcard s, users u 
+select TO_CHAR(p.paydate,'YYYY-MM-DD') as paydate, p.money, s.sam_name, u.name, p.memo, p.u_num, p.pay_num from payment p, samsungcard s, users u 
 where p.sam_num = s.sam_num and p.u_num = u.u_num and p.mas_num = #{mas_num} ORDER BY paydate
 </select>
 
@@ -128,6 +128,11 @@ where p.z_num = z.z_num and p.u_num = u.u_num and p.mas_num = #{mas_num} ORDER B
 <select id = "useMoneyTotal" resultType="int" parameterType = "int">
 select SUM(money) as total from payment where mas_num = #{mas_num}
 </select>
+
+<!-- 가계부 내역 삭제 -->
+<delete id="deletePayment" parameterType="paymentvo">
+delete payment where pay_num = #{pay_num} and u_num = #{u_num};
+</delete>
 
 <!--  ======================================  신지 test   ==================================== -->
 

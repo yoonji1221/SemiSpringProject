@@ -38,5 +38,8 @@ public interface MypageService {
 	public List<HomeVO> getGu();
 
 	public List<HomeVO> category();
+	
+	//지출 내역 삭제
+	public void deletePayment(paymentVO vo);
 
 }

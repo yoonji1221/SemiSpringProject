@@ -74,5 +74,10 @@ public class MypageDAO {
 	public List<HomeVO> category() {
 		return session.selectList("db.category");
 	}
+	
+	//지출 내역 삭제
+	public void deletePayment(paymentVO vo) {
+		session.delete("db.deletePayment", vo);
+	}
 
 }

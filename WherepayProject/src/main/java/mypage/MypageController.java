@@ -3,6 +3,7 @@ package mypage;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -144,6 +145,16 @@ public class MypageController {
 		 ModelAndView mav = new ModelAndView();
 		 mav.setViewName("calender");
 		 return mav;
+	}
+	
+	//지출 내역 삭제
+	@RequestMapping("/deletePayment")
+	public String deletePayment(@RequestParam("u_num") int u_num, @RequestParam("pay_num") int pay_num, paymentVO vo, HttpSession session) {	
+		int mas_num = Integer.parseInt(session.getAttribute("mas_num").toString());
+//		vo.setPay_num(pay_num);
+//		vo.setU_num(u_num);
+//		mypageservice.deletePayment(vo);
+		return "redirect:/home";
 	}
 			
 
