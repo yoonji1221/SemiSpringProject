@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 
 <%@ page isELIgnored="false" contentType = "text/html; charset=UTF-8" %>
 <!DOCTYPE html>
@@ -15,12 +15,12 @@
 
 </head>
 <body>
-<main id="main" style="margin-top: 40px;height: 100px;">
+<main id="main" style="margin-top: 40px;">
 		<section class="breadcrumbs" style="margin-top: 80px;height: 100px;">
 			<div class="container">
 				<div class="section-title">
 					<div class="d-flex justify-content-between align-items-center">
-						<h2>내 주변 가맹점을 검색해보세요!</h2>
+						<h2>검색 결과입니다.</h2>
 						<ol>
 							<li><a href="/wherepay/home">Home</a></li>
 							<li>내 주변 가맹점 찾기</li>
@@ -29,23 +29,71 @@
 </div>
 				</div>
 		</section>
-		<div class="container">
-<h1>검색 detail</h1>
 <c:forEach items="${detailresult }" var="detaillist">
-<tr><td >${detaillist.z_num }
+<%-- <tr><td >${detaillist.z_num }
 </td><td>${detaillist.z_name }
 </td><td>${detaillist.z_addr}
 </td><td> ${detaillist.z_btheme}
 </td><td> ${detaillist.z_stheme}
 </td><td> ${detaillist.z_manager}
 </td>
-</tr>
+</tr> --%>
 <c:set var="sam_num" value="${detaillist.z_num }" />
 <c:set var="sam_name" value="${detaillist.z_name }" />
 <c:set var="sam_addr" value="${detaillist.z_addr}" />
+<c:set var="z_btheme" value="${detaillist.z_btheme}" />
+<c:set var="z_stheme" value="${detaillist.z_stheme}" />
+<c:set var="z_manager" value="${detaillist.z_manager}" />
 </c:forEach>
+<section class="features">
+      <div class="container">
 
-		<div id="map" style="width: 700px; height: 500px;"></div></div></main>	
+        <div class="section-title">
+         <h2>${sam_name }</h2>
+        </div>
+
+        <div class="row aos-init aos-animate" data-aos="fade-up">
+          <div class="col-md-5"><br><br>
+ <table class="table table-bordered table-striped">
+<thead>
+  <tr>
+    <th nowrap>가맹점명</th>
+    <th>${sam_name }</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>주소</td>
+    <td>${sam_addr }</td>
+  </tr>
+  <tr>
+    <td>업종</td>
+    <td>${z_btheme }</td>
+  </tr>
+  <tr>
+    <td>상세분류</td>
+    <td>${z_stheme }</td>
+  </tr>
+  <tr>
+    <td>매장 관리자</td>
+    <td>${z_manager }</td>
+  </tr>
+</tbody>
+</table>
+ <div style="padding-top: 30px;" align='right'><a id="button1" style="align:right;background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px;"  href="/wherepay/search">돌아가기</a>
+      </div>
+          </div>
+          
+          
+<div class="col-md-7 pt-4">
+<div id="map" style="width: 700px; height: 500px;"></div>
+ </div>
+        </div>
+
+      </div>
+    </section>
+
+		</main>	
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=109901ab932f557de01522d4798dad18&libraries=services"></script>
 <script>
 
@@ -120,7 +168,7 @@ sam_addrlist.forEach(function(addr, index) {
 </script>	
 			
 </body>
-
+<%-- 
 <!-- footer add -->
-<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include> --%>
 </html>

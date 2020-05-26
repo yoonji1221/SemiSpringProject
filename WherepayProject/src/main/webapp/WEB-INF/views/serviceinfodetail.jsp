@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 <%@ page isELIgnored="false" contentType = "text/html; charset=UTF-8" %>
 <% String Path = request.getContextPath(); %>
 <html>
@@ -29,7 +29,7 @@
 </div>
 				</div>
 		</section>
-
+<section class="features">
 <div class="container">
 
 
@@ -97,9 +97,12 @@
   </tr><br>
 </tbody>
 </table>
+<div style="padding-top: 30px;" align='right'><a id="button1" style="align:right;background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 8px;padding-bottom: 5px;"  href="/wherepay/serviceinfo">
+<font size="2px" color="#ffffff" >목록보기</font></a>
+      </div>
+        
 
-
-</div></main>
+</div></section></main>
 </body>
 
 <!-- footer add -->

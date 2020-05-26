@@ -21,10 +21,14 @@
 
 <script>
 function erchk() {
+		
 	   var flag =validation(); // 유효성 검사를 한 값
+	   
 	   if(flag){
 	      document.sub1.submit();
 	   }
+		   
+		 
 	};
 
 
@@ -76,17 +80,18 @@ function  validation(){	//빈칸 없이 다썼는지 검사
       alert("전화번호를 입력해주세요");
    }else if($("#addr").val() == "" ){
 	    console.log($("#addr").val());
-      alert("주소를 입력해주세요");
-   }else if($("#familynum").val() == "" ){
+	      alert("주소를 입력해주세요");
+	}else if($("#familynum option:selected").val() == "" ){
 	    console.log($("#familynum").val());
-	   alert("세대원 수를 선택해주세요");
-   } else if($("#addr").val() == "" ){
-	    console.log($("#addr").val());
-	   alert("지급 방식을 선택해주세요");
-	   }
+		   alert("세대원 수를 선택해주세요");
+	   } else if($("#howtoget option:selected").val() == "" ){
+	    console.log($("#howtoget").val());
+		   alert("지급 방식을 선택해주세요");
+	}
    else{
       flag = true;
-   } return flag;
+   }
+    return flag;
 }
 
 
@@ -144,7 +149,7 @@ function  validation(){	//빈칸 없이 다썼는지 검사
 					<!-- 가구원 수 -->
 					<div class="form-wrapper">
 						<select name ="familynum" id="familynum" class="form-control">
-							<option value="세대원 수" disabled="세대원 수" selected="세대원 수">세대원 수</option>
+							<option value="" disabled="세대원 수" selected="세대원 수">세대원 수</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -157,7 +162,7 @@ function  validation(){	//빈칸 없이 다썼는지 검사
 					<!-- 지급 방식 -->			
 					<div class="form-wrapper">
 						<select name ="howtoget" id="howtoget" class="form-control">
-							<option value="지급방식 선택" disabled="지급방식 선택" selected="지급방식 선택">지급방식 선택</option>
+							<option value="" disabled="지급방식 선택" selected="지급방식 선택">지급방식 선택</option>
 							<option value="신용/체크카드">신용/체크카드</option>
 							<option value="선불카드">선불카드</option>
 							<option value="상품권">상품권</option>
@@ -165,12 +170,7 @@ function  validation(){	//빈칸 없이 다썼는지 검사
 						<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
 					</div>
 				
-				
-				
-				
-				
-				
-					<button type ="submit" onclick="erchk()" id="join" disabled="disabled" >가입하기
+					<button type ="button" onclick="erchk()" id="join" disabled="disabled" >가입하기
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
 				</form>
