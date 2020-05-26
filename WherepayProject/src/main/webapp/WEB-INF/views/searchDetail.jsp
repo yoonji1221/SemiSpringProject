@@ -9,7 +9,7 @@
 <head>
 <script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
-<title>WHERE PAY에 오신 걸 환영합니다!</title>
+<title>매장 정보 확인</title>
 <script>
 function setParentText(name, num){
     opener.document.getElementById("ppInput").value = name
@@ -20,7 +20,7 @@ function setParentText(name, num){
 
 </head>
 <body>
-<h1>검색 detail</h1>
+<h1>매장 정보 확인</h1>
 <c:forEach items="${detailresult }" var="detaillist">
 <tr><td >${detaillist.sam_num }
 </td><td>${detaillist.sam_name }
@@ -53,7 +53,7 @@ function setParentText(name, num){
 
 <br> <button id='hi'  onclick="setParentText('${sam_name }', '${sam_num }');">선택</button>
 
- <!-- 
+
       <div id="map" style="width: 700px; height: 500px;"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=109901ab932f557de01522d4798dad18&libraries=services"></script>
 <script>
@@ -131,6 +131,6 @@ sam_addrlist.forEach(function(addr, index) {
 
 
 </script>   
-         -->   
+        
 </body>
 </html>

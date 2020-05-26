@@ -1,218 +1,277 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@ page isELIgnored="false" contentType = "text/html; charset=UTF-8" %>
+<%@ page isELIgnored="false" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
 <title>Mypage</title>
- <meta content="" name="descriptison">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-  
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
-
-<script type="text/javascript">
-function cardPopup() { 
-	window.open("searchMarket", "a", "width=800, height=400, left=100, top=50"); 
-	}
-
-function zeroPopup() { 
-	window.open("searchMarket2", "b", "width=800, height=400, left=100, top=50"); 
-	}
-</script>
 
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+function cardPopup() { 
+	var url = "/wherepay/searchMarket";
+	window.open(url, "a", "width=800, height=400, left=100, top=50"); 
+	}
+
+function zeroPopup() { 
+	var url = "/wherepay/searchMarket2";
+	window.open(url, "b", "width=800, height=400, left=100, top=50"); 
+	}
+	
+function test(){
+	$(function() {
+		alert("test");
+		$("#paydate").datepicker({
+			dateFormat : 'yy-mm-dd'
+		});
+	});
+}
+
+</script>
 
 
 </head>
 <body>
 
-  <main id="main" style="margin-top: 0px;">
-  
+	<main id="main" style="margin-top: 0px;">
+
 
 		<c:forEach items="${list }" var="userlist">
 			<c:if test="${userlist.confirm eq '0'}">
-			
-			<section class="breadcrumbs" style="margin-top: 80px;height: 100px;">
-		         <div class="container">
-		            <div class="section-title">
-		               <div class="d-flex justify-content-between align-items-center">
-		                   <h2 style="color:#000080; ">${userlist.name}세대주님의 마이페이지</h2>
-		               </div>
-					</div>			
-		          </div>
-     		 </section>
-     		 
-     		 <div class="section-title">
-				<h3>가계부</h3>
-				<h4>${userlist.name }님의 정부재난지원금 사용 내역</h4>				
-			 </div>
-			 
+
+				<section class="breadcrumbs"
+					style="margin-top: 80px; height: 100px;">
+					<div class="container">
+						<div class="section-title">
+							<div class="d-flex justify-content-between align-items-center">
+								<h2 style="color: #000080;">${userlist.name}세대주님의  마이페이지</h2>
+							</div>
+						</div>
+					</div>
+				</section>
+				
+				
+				
+	<section class="skills aos-init aos-animate" data-aos="fade-up" style="padding-top: 30px;padding-bottom: 30px;">
+		<div class="container">
+
+				<div class="section-title">
+					<h2>가계부</h2>
+					<h3>${userlist.name }님의  정부재난지원금  사용  내역을 조회할 수 있습니다.</h3>
+					<h3>가족들과 함께 사용 내역을 공유해보세요.</h3>
+					<h3>잔액 조회를 통해 남은 지원금을 확인하세요.</h3>
+				</div>
+		</div>
+	</section> <!-- 가계부 -->
+	
+	
 				<c:set var="mas_num" value="${userlist.mas_num }" />
 				<c:set var="u_num" value="${userlist.u_num }" />
 				<c:set var="mas_name" value="${userlist.name}" />
 			</c:if>
 		</c:forEach>
-      
+
 
 		<c:forEach items="${detaillist }" var="detaillist">
 			<c:set var="familynum" value="${detaillist.familynum }" />
 			<c:set var="howtoget" value="${detaillist.howtoget}" />
 		</c:forEach>
-		
-	<section class="team aos-init aos-animate" data-aos="fade-up">
-      <div class="container">
-      
-       
-     <section class="skills aos-init aos-animate" data-aos="fade-up">
-      <div class="container">
 
-        <div class="section-title">
-          <h2>지원금 사용 유형  " ${howtoget } "</h2>
-        
-         
-         <c:choose>
-			<c:when test="${familynum eq '1' }">
-				<c:set var="totalMoney" value="400000" />
-			</c:when>
-			<c:when test="${familynum eq '2' }">
-				<c:set var="totalMoney" value="600000" />
-			</c:when>
-			<c:when test="${familynum eq '3' }">
-				<c:set var="totalMoney" value="800000" />
-			</c:when>
-			<c:when test="${familynum eq '4' }">
-				<c:set var="totalMoney" value="1000000" />
-			</c:when>
-		</c:choose>
 
-    
-			<h3>총 지원금 : ${totalMoney }원</h3>
-			<h3>사용한 지원금 : ${useMoney}원</h3>
-	          <script>
-				var total = parseInt(${totalMoney});
-				var use = parseInt(${useMoney});
-				var money = total - use;
-				document.write("<h3>남은 지원금 : "+money+"원</h3>");			
-				</script>
-         </div>
-          </div>
-    </section>    
-        
-  <section class="skills aos-init aos-animate" data-aos="fade-up">
-      <div class="container">
 
-        <div class="section-title">
-			<h2>지출 내역 입력</h2>
+
+	<section class="skills aos-init aos-animate" data-aos="fade-up" style="padding-top: 30px;padding-bottom: 30px;">
+		<div class="container">
+
+				<div class="section-title">
+					<h2>지원금 사용 유형 " ${howtoget } "</h2>
+				</div>
+
+
+					<c:choose>
+						<c:when test="${familynum eq '1' }">
+							<c:set var="totalMoney" value="400000" />
+						</c:when>
+						<c:when test="${familynum eq '2' }">
+							<c:set var="totalMoney" value="600000" />
+						</c:when>
+						<c:when test="${familynum eq '3' }">
+							<c:set var="totalMoney" value="800000" />
+						</c:when>
+						<c:when test="${familynum eq '4' }">
+							<c:set var="totalMoney" value="1000000" />
+						</c:when>
+					</c:choose>
+					
+					
+		<section class="team aos-init aos-animate" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500" style=" padding-top: 0px;padding-bottom: 0px;">
+	      <div class="container">
+	
+	        <div class="row">
+					
+					<table class="table">
+				
+					<tr>
+					<td style="width:600px; text-align:center;"> <h4>지원 받은 금액</h4></td>
+					<td style="width:600px; text-align:center;"> <h4>${totalMoney }원</h4></td>
+					</tr>
+					
+					<tr>
+					<td style="width:600px; text-align:center;"><h4>현재까지 사용한 금액</h4></td>
+					<td style="width:600px; text-align:center;"><h4>${useMoney}원</h4></td>
+					</tr>
+					
+					<tr>
+					<td style="width:600px; text-align:center;"><h4>사용 가능한 금액</h4></td>
+					<td style="width:600px; text-align:center;">
+					<script>
+						var total = parseInt(${totalMoney});
+						var use = parseInt(${useMoney});
+						var money = total - use;
+						document.write("<h4>" + money+"원</h4>");			
+					</script>
+					</td>
+					</tr>
+					
+					<tr><td></td> <td></td></tr>
+					
+					</table>
+					
+			</div>
 		</div>
-			<form action="/wherepay/household/insertPayment?mas_num=${mas_num}" method="get">
-				<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-				<script src="//code.jquery.com/jquery.min.js"></script>
-				<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	</section>
+					
+				</div>
+		</section> <!-- 지원금 사용 유형 -->
 		
-				<script>
-					$(function() {
-						$("#paydate").datepicker({
-							dateFormat : 'yy-mm-dd'
-						});
-					});
-				</script>
 		
-				날짜 <input type="text" id="paydate" name="paydate"><br>
-				금액<input type="text" id = "money" name="money">원<br> 
-				가게명 <input type="text" id="ppInput" name="store_name" placeholder="매장을 검색하세요">
-				<%-- 사용자<input type="text" id = "u_num" name="u_num"><br>	--%>
-				
-				<c:choose>
-					<c:when test="${howtoget eq '신용카드/체크카드' }">
-						<c:set var="sam_num" value="1" />
-						<input type="hidden" id="pInput" name="sam_num">
-						<input type="hidden" id="check_num" name="check_num" value='1'>
-						<input type="button" value="매장 검색" onclick="cardPopup();" />
-					</c:when>
-					<c:when test="${howtoget eq '선불카드' }">
-						<c:set var="z_num" value="2" />
-						<input type="hidden" id="pInput" name="z_num">
-						<input type="hidden" id="check_num" name="check_num" value='2'>
-						<input type="button" value="매장 검색" onclick="zeroPopup();" />
-					</c:when>
-					<c:when test="${howtoget eq '서울사랑상품권' }">
-						<c:set var="z_num" value="1" />
-						<input type="hidden" id="pInput" name="z_num">
-						<input type="hidden" id="check_num" name="check_num" value='2'>
-						<input type="button" value="매장 검색" onclick="zeroPopup();" />
-					</c:when>
-				</c:choose>
-				
-				<br>메모 <input type="text" id="memo" name="memo">
-				
-				 
-				
-				<input type="hidden" id="mas_num" name="mas_num" value='${mas_num}'>	
-				<input type="hidden" id="u_num" name="u_num" value='<%=request.getParameter("u_num")%>'>				
-				<br> <input type="submit" value="입력">
-			</form>
-          </div>
-    </section>    
+		
 
-	<h3>지출 내역</h3>
-	<table class="table">
-	<thead>
-	<tr> <th>날짜</th> <th>금액</th> <th>사용 매장</th> <th>사용자</th> <th>메모</th></tr>
-	</thead>
-	<tbody>
-	<c:forEach items="${cardlist }" var="cardlist">
-		<tr>
-		<td>${cardlist.paydate }</td>
-		<td>${cardlist.money }원</td>
-		<td>${cardlist.sam_name }</td>
-		<td>${cardlist.name }</td>
-		<td>${cardlist.memo }</td>
-		</tr>
-	</c:forEach>
+	<section class="skills aos-init aos-animate" data-aos="fade-up" style="padding-top: 30px;padding-bottom: 30px;">
+		<div class="container">
+
+			<div class="section-title">
+				<h2>지출 내역 입력</h2>
+			</div>
+												
+		<section class="team aos-init aos-animate" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500" style="padding-left: 100px; padding-top: 0px;padding-bottom: 0px;">
+	      <div class="container">
 	
-	<c:forEach items="${zerolist }" var="zerolist">
-		<tr>
-		<td>${zerolist.paydate }</td>
-		<td>${zerolist.money }원</td>
-		<td>${zerolist.z_name }</td>
-		<td>${zerolist.name }</td>
-		<td>${zerolist.memo }</td>
-		</tr>
-	</c:forEach>
+	        <div class="row">
+	        
+		<form action="/wherepay/household/insertPayment?mas_num=${mas_num}" class="form-inline" method="get">
+			 
+			  <div class="form-group">
+			  
+			  	
+						
+			    <label for="exampleInputDate" > 날짜 &nbsp;</label>
+				<input type="text" id="paydate" name="paydate" onclick="test();" > &nbsp; &nbsp;		
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputMoney" >금액 &nbsp;</label>
+				<input type="text" id="money" name="money" > <label for="exampleInputMoney">원</label> &nbsp; &nbsp;
+			  </div>
+			   <div class="form-group">
+			    <label for="exampleInputStore" >가게명 &nbsp;</label>
+				<input type="text" id="ppInput" name="store_name" placeholder="매장을 검색하세요" style="width:200px">&nbsp;&nbsp;
+				 <c:choose>
+								<c:when test="${howtoget eq '신용카드/체크카드' }">
+									<c:set var="sam_num" value="1" />
+									<input type="hidden" id="pInput" name="sam_num">
+									<input type="hidden" id="check_num" name="check_num" value='1'>
+									<input type="button" value="매장 검색" class="btn btn-default" onclick="cardPopup();" style="background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px;" />
+								</c:when>
+								<c:when test="${howtoget eq '선불카드' }">
+									<c:set var="z_num" value="2" />
+									<input type="hidden" id="pInput" name="z_num">
+									<input type="hidden" id="check_num" name="check_num" value='2'>
+									<input type="button" value="매장 검색" class="btn btn-default" onclick="zeroPopup();" style="background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px;"/>
+								</c:when>
+								<c:when test="${howtoget eq '상품권' }">
+									<c:set var="z_num" value="2" />
+									<input type="hidden" id="pInput" name="z_num">
+									<input type="hidden" id="check_num" name="check_num" value='2'>
+									<input type="button" value="매장 검색" class="btn btn-default" onclick="zeroPopup();" style="background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px;"/>
+								</c:when>
+							</c:choose>
+				 </div>
+				  <div class="form-group">
+				    &nbsp;&nbsp;<label for="exampleInputStore"  >메모 &nbsp;</label>
+				     <input type="text" id="memo" name="memo"  style="width:200px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  </div>
 	
-	</tbody>
-	</table>
+				  <button type="submit" class="btn btn-primary" style="background-color:#1e4356;color:#ffffff;padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">입력</button>
 	
-	</div> <!-- container -->
-	 </section>
-  </main>
+	              </form>
+	              
+				</div>
+		       </div>
+		       
+		    </section>
+
+			</div>
+		</section> <!-- 지출내역 입력 끝 -->
+		
+		
+		
+		
+	<section class="skills aos-init aos-animate" data-aos="fade-up" style="padding-top: 30px;padding-bottom: 30px;">
+		<div class="container">
+
+			<div class="section-title">
+				<h2>지출 정보 조회</h2>
+			</div>	
+		
+				<table class="table">
+					<thead>
+						<tr>
+							<th>날짜</th>
+							<th>금액</th>
+							<th>사용 매장</th>
+							<th>사용자</th>
+							<th>메모</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${cardlist }" var="cardlist">
+							<tr>
+								<td>${cardlist.paydate }</td>
+								<td>${cardlist.money }원</td>
+								<td>${cardlist.sam_name }</td>
+								<td>${cardlist.name }</td>
+								<td>${cardlist.memo }</td>
+							</tr>
+						</c:forEach>
+
+						<c:forEach items="${zerolist }" var="zerolist">
+							<tr>
+								<td>${zerolist.paydate }</td>
+								<td>${zerolist.money }원</td>
+								<td>${zerolist.z_name }</td>
+								<td>${zerolist.name }</td>
+								<td>${zerolist.memo }</td>
+							</tr>
+						</c:forEach>
+
+					</tbody>
+				</table>
+
+			</div>
+			<!-- container -->
+		</section>
+	</main>
 
 
 </body>
