@@ -1,6 +1,7 @@
 package user;
 
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -53,13 +54,16 @@ public class UserController {
 	      
 	      if (result == 1) {
 	         session.setAttribute("dbid", vo.getId());
+	         
+	         session.setAttribute("u_num", vo.getU_num());
+	         session.setAttribute("mas_num", vo.getMas_num());
 	        
 	         System.out.println(session.getAttribute("dbid") + "<--로그인하고 세션아이디");
 	         mav.setViewName("redirect:/home");
 	      }else {
 	         response.setContentType("text/html; charset=UTF-8");
 	            PrintWriter out = response.getWriter();
-	            out.println("<script>alert('입력한 정보가 틀렸습니다.'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
+	            out.println("<script>alert('회원 정보가 없습니다'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
 	            out.flush();
 	            out.close();         
 	      }
@@ -91,22 +95,44 @@ public class UserController {
 	//세대주 확인
 	@RequestMapping(value = "/joinmaster1/check", method =RequestMethod.GET)
 	@ResponseBody	//ajax data부분에 값 넘겨주는 annotation 
-	public int userJoin2(@RequestParam("jumin") String jumin,@RequestParam("name") String name, HttpSession session) {
-		System.out.println(jumin+name);
+	public int userJoin2(@RequestParam("jumin") String jumin,@RequestParam("name") String name, 
+			HttpSession session, HttpServletResponse response) throws IOException {
+		
+		int result = 0;
 		
 		MasVO vo = new MasVO();
 		vo.setName(name);
 		vo.setJumin(jumin);
 		System.out.println(vo.getName()+"받아온 이름");
 		
-		int result = userservice.masCheck(vo);
-		System.out.println(result+"결과값 나오는지, data에 넘길 그 값");
-	
-		if(result == 1) {			
-			session.setAttribute("sname", name);
-			session.setAttribute("sjumin", jumin);
-			String sname = (String)session.getAttribute("sname");
-			String sjumin= (String)session.getAttribute("sjumin");		
+		int alreayJoinChk = userservice.alreadyJoin(vo.getJumin());
+		System.out.println(alreayJoinChk+"제발!!!!!!!!!!!");
+		
+		if (alreayJoinChk==0) {	//0: 가입 가능	//어떤 정수: 이미 가입 한거
+			
+			result = userservice.masCheck(vo);	//ajax의 data와 같음
+			System.out.println(result+"결과값 나오는지, data에 넘길 그 값");
+		
+			if(result == 1) {			
+				session.setAttribute("sname", name);
+				session.setAttribute("sjumin", jumin);
+				String sname = (String)session.getAttribute("sname");
+				String sjumin= (String)session.getAttribute("sjumin");		
+			}else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('이름과 주민등록번호를 다시 확인해주세요'); location.href='/wherepay/joinmaster1'; </script>"); //history.go(-1);        
+	            out.flush();
+	            out.close();  
+			}
+		
+
+		} else {
+			System.out.println("Ssssssssssssssssssssss");
+			response.setContentType("text/html; charset=UTF-8");PrintWriter out = response.getWriter();
+			out.println("<script>alert('이미 가입한 세대주입니다'); location.href='/wherepay/joinmaster1'; </script>"); //history.go(-1);        
+            out.flush();
+            out.close();  
 		}
 		return result;
 	}
@@ -228,13 +254,13 @@ public class UserController {
 					out.println("<script>alert('회원가입에 성공하였습니다.'); location.href='/wherepay/home'; </script>"); //history.go(-1);        
 					out.flush();
 					out.close();  
-					path = "redirect:/wherepay/joinmember1";	
+				//	path = "redirect:/wherepay/joinmember1";	
 				}
 			}
 			else {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('이미 회원가입을 모두 끝낸가족입니다.'); location.href='/wherepay/home'; </script>"); //history.go(-1);        
+				out.println("<script>alert('이미 회원가입을 모두 끝낸가족입니다.'); location.href='/wherepay/joinmember2'; </script>"); //history.go(-1);        
 				out.flush();
 				out.close();  
 				path = "redirect:/wherepay/home";

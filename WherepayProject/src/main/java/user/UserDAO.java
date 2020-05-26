@@ -18,8 +18,8 @@ public class UserDAO {
 	}
 	
 	//세대주 가입 - 기 가입자:1
-	public int alreadyJoin(String id) {
-		return session.selectOne("db.alreadyJoin", id);
+	public int alreadyJoin(String jumin) {
+		return session.selectOne("db.alreadyJoin", jumin);
 	}
 	
 	//세대주 확인 - 주민번호랑 이름 입력해서 확인 

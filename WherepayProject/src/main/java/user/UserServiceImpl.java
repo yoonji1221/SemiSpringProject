@@ -18,8 +18,8 @@ public class UserServiceImpl implements UserService {
 	
 	//세대주 가입 - 기 가입자:1
 	@Override
-	public int alreadyJoin(String id) {
-		return dao.alreadyJoin(id);
+	public int alreadyJoin(String jumin) {
+		return dao.alreadyJoin(jumin);
 	}
 	
 	//세대주 확인
