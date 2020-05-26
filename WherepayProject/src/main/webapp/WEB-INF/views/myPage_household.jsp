@@ -9,7 +9,7 @@
 
 <meta charset="UTF-8">
 <title>Mypage</title>
-<%-- <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>--%>
+<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -283,5 +283,5 @@ function test(){
 
 
 </body>
-<%-- <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>--%>
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </html>

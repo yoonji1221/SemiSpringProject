@@ -151,10 +151,10 @@ public class MypageController {
 	@RequestMapping("/deletePayment")
 	public String deletePayment(@RequestParam("u_num") int u_num, @RequestParam("pay_num") int pay_num, paymentVO vo, HttpSession session) {	
 		int mas_num = Integer.parseInt(session.getAttribute("mas_num").toString());
-//		vo.setPay_num(pay_num);
-//		vo.setU_num(u_num);
-//		mypageservice.deletePayment(vo);
-		return "redirect:/home";
+		vo.setPay_num(pay_num);
+		vo.setU_num(u_num);
+		mypageservice.deletePayment(vo);
+		return "redirect:/household?mas_num=" + mas_num +"&u_num=" + u_num;
 	}
 			
 
