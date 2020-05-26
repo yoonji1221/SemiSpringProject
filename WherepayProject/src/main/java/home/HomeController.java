@@ -26,6 +26,10 @@ public class HomeController {
 		mav.setViewName("wherepayhome");
 		return mav;
 	}
+	@GetMapping("/contact")
+	public String contact() {
+		return "contact";
+	}
 	
 	//검색 페이지
 	@GetMapping("/search")
@@ -106,7 +110,7 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView();
 		List<HomeVO> detailresult = homeservice.detailresult(sam_num);
 		mav.addObject("detailresult", detailresult);
-		mav.setViewName("searchdetail");
+		mav.setViewName("searchDetail");
 		return mav;
 	}
 	//제로페이 상세 검색 페이지

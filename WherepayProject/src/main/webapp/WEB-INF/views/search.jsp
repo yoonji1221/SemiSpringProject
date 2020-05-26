@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+
 
 <%@ page isELIgnored="false" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
@@ -105,8 +105,8 @@ function button1_click() {
 							<li>내 주변 가맹점 찾기</li>
 						</ol>
 					</div>
-</div>
 				</div>
+			</div>
 		</section>
 		<section class="team aos-init aos-animate" data-aos="fade-up">
 		<div class="container">
@@ -116,8 +116,7 @@ function button1_click() {
 				<option value="2" id="money">선불카드</option>
 				<option value="3" id="cash">모바일상품권</option>
 			</select><br>
-			<br> 지역 선택 : 서울특별시&nbsp;&nbsp; <select name="address"
-				id="address">
+			<br> 지역 선택 : 서울특별시&nbsp;&nbsp; <select name="address"id="address">
 				<option value="전체">&nbsp;전체&nbsp;</option>
 				<c:forEach items="${gulist}" var="gulist">
 					<option value="${gulist.sam_gu}" name="sam_gu">${gulist.sam_gu}</option>
@@ -134,12 +133,13 @@ function button1_click() {
 			<div id="tab2"></div>
 </div></div>
 		</section>
+		<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	</main>
 
 </body>
 
 
 <!-- footer add -->
-<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+
 
 </html>
