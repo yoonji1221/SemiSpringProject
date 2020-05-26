@@ -48,6 +48,9 @@ public class UserController {
 	         throws Exception {
 	      
 	      int result = userservice.login(vo);
+	     
+	      
+
 	      ModelAndView mav = new ModelAndView();
 	      
 	      System.out.println(result+"로그인 성공:1, 실패:0");
@@ -55,9 +58,14 @@ public class UserController {
 	      if (result == 1) {
 	         session.setAttribute("dbid", vo.getId());
 	         
-	         session.setAttribute("u_num", vo.getU_num());
-	         session.setAttribute("mas_num", vo.getMas_num());
-	        
+	         List<UserVO> getmasnum = userservice.getMasnum(vo);
+		      int masnum = getmasnum.get(0).getMas_num();
+		      int unum = getmasnum.get(0).getU_num();
+	          session.setAttribute("u_num", unum);
+	          session.setAttribute("mas_num", masnum);
+	         
+	         System.out.println(session.getAttribute("u_num") + "<--로그인하고 unum");
+	         System.out.println(session.getAttribute("mas_num") + "<--로그인하고 masnum");
 	         System.out.println(session.getAttribute("dbid") + "<--로그인하고 세션아이디");
 	         mav.setViewName("redirect:/home");
 	      }else {
