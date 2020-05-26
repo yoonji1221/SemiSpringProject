@@ -80,20 +80,20 @@ sam_addrlist.forEach(function(addr, index) {
 </head>
 <body>
 <main id="main" style="margin-top: 40px;">
-		<section class="breadcrumbs" style="margin-top: 80px;height: 100px;">
-			<div class="container">
-				<div class="section-title">
-					<div class="d-flex justify-content-between align-items-center">
-						<h2>검색 결과입니다.</h2>
-						<ol>
-							<li><a href="/wherepay/home">Home</a></li>
-							<li>내 주변 가맹점 찾기</li>
-						</ol>
-					</div>
+      <section class="breadcrumbs" style="margin-top: 80px;height: 100px;">
+         <div class="container">
+            <div class="section-title">
+               <div class="d-flex justify-content-between align-items-center">
+                  <h2>검색 결과입니다.</h2>
+                  <ol>
+                     <li><a href="/wherepay/home">Home</a></li>
+                     <li>내 주변 가맹점 찾기</li>
+                  </ol>
+               </div>
 </div>
-				</div>
-		</section>
-		
+            </div>
+      </section>
+      
 
 
 

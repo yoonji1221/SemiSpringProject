@@ -22,6 +22,7 @@
 
 <script>
 function erchk() {
+	
 	   var flag =validation(); // 유효성 검사를 한 값
 	   if(flag){
 	      document.sub1.submit();
@@ -65,16 +66,16 @@ $("#id").keyup(function() {
 function  validation(){	//빈칸 없이 다썼는지 검사
     var flag = false;
    
-    if($("#id").val() == "" ){
-      console.log($("#id").val());
-      alert("아이디칸이 비었습니다");
-   }else if($("#userPw").val() == "" ){
-      alert("비밀번호칸이 비었습니다");
-   }else if($("#name").val() == "" ){
+    if($("#name").val() == "" ){
       console.log($("#name").val());
-      alert("이름칸이 비었습니다");
+      alert("이름을 입력해주세요");
+   }else if($("#id").val() == "" ){
+      alert("아이디를 입력해주세요");
+   }else if($("#userPw").val() == "" ){
+      console.log($("#userPw").val());
+      alert("비밀번호를 입력해주세요");
    }else if($("#phone").val() == "" ){
-      alert("전화번호칸이 비었습니다");
+      alert("전화번호를 입력해주세요");
    }
    else{
       flag = true;
@@ -132,7 +133,7 @@ function  validation(){	//빈칸 없이 다썼는지 검사
 						<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
 					</div> -->
 				
-					<button type ="submit" onclick="erchk()" id="join" disabled="disabled" >가입하기
+					<button type ="button" onclick="erchk()" id="join"  >가입하기<!-- disabled="disabled" -->
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
 				</form>

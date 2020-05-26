@@ -26,8 +26,8 @@
 							<li>내 주변 가맹점 찾기</li>
 						</ol>
 					</div>
-</div>
 				</div>
+			</div>
 		</section>
 <c:forEach items="${detailresult }" var="detaillist">
 <%-- <tr><td >${detaillist.z_num }
@@ -51,7 +51,7 @@
         <div class="section-title">
          <h2>${sam_name }</h2>
         </div>
-
+        
         <div class="row aos-init aos-animate" data-aos="fade-up">
           <div class="col-md-5"><br><br>
  <table class="table table-bordered table-striped">
