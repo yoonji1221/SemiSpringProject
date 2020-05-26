@@ -39,7 +39,7 @@ function button1_click() {
                    var z_btheme = resultlist[idx]['z_btheme']
                    var z_manager = resultlist[idx]['z_manager']
                    
-                   var all = $("<tr><td>"+z_num+"</td><td><a href='/wherepay/search/detail2?z_num="+z_num+"'>"+z_name+"</a></td><td>"+z_addr+"&nbsp;"+z_btheme+"&nbsp;"+z_stheme+"</td><td>"+z_manager+"</td>");                   
+                   var all = $("<tr><td>"+z_num+"</td><td><a href='http://192.168.0.100:8080/wherepay/search/detailzero?z_num="+z_num+"'>"+z_name+"</a></td><td>"+z_addr+"&nbsp;"+z_btheme+"&nbsp;"+z_stheme+"</td><td>"+z_manager+"</td>");                   
                $("#table2").append(all);
                 }
                  

@@ -34,5 +34,9 @@ public interface MypageService {
 	
 	//사용 내역 총합
 	public int useMoney(int mas_num);
+	
+	public List<HomeVO> getGu();
+
+	public List<HomeVO> category();
 
 }

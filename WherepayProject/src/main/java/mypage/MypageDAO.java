@@ -66,5 +66,13 @@ public class MypageDAO {
 	public int useMoney(int mas_num) {
 		return session.selectOne("db.useMoneyTotal", mas_num);
 	}
+	
+	//구, 카테고리 검색
+	public List<HomeVO> getGu() {
+		return session.selectList("db.getGu");
+	}
+	public List<HomeVO> category() {
+		return session.selectList("db.category");
+	}
 
 }

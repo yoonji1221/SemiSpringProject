@@ -69,15 +69,17 @@ public class MypageServiceImpl implements MypageService {
 	}
 	
 	
+	@Override
+	public List<HomeVO> getGu() {
+		return dao.getGu();
+	}
+
+	@Override
+	public List<HomeVO> category() {
+		return dao.category();
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 
 }
