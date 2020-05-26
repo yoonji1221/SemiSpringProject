@@ -96,6 +96,11 @@ public class MypageController {
 	@GetMapping("/searchMarket")
 	public ModelAndView searchMarket() {
 		 ModelAndView mav = new ModelAndView();
+		 List<HomeVO> gulist = mypageservice.getGu();
+		 List<HomeVO> category = mypageservice.category();
+		 	System.out.println(gulist.size()+":::::::::::"+category.size());
+		 mav.addObject("gulist", gulist);
+		 mav.addObject("category", category);
 		 mav.setViewName("searchMarket");
 		 return mav;
 	}
@@ -104,27 +109,32 @@ public class MypageController {
 	@GetMapping("/searchMarket2")
 	public ModelAndView searchMarket2() {
 		 ModelAndView mav = new ModelAndView();
+		 List<HomeVO> gulist = mypageservice.getGu();
+		 List<HomeVO> category = mypageservice.category();
+			
+		 mav.addObject("gulist", gulist);
+		 mav.addObject("category", category);
 		 mav.setViewName("searchMarket2");
 		 return mav;
 	}
 	
 	//디테일 매장 검색 - 카드
-	@GetMapping("/search/detail11")
+	@GetMapping("/search/detailcard")
 	public ModelAndView searchMarketDetail(@RequestParam(value = "sam_num") int sam_num) {
 		 ModelAndView mav = new ModelAndView();
 		 List<HomeVO> list = mypageservice.detaillist(sam_num);
 		 mav.addObject("detailresult", list);
-		 mav.setViewName("searchDetail");
+		 mav.setViewName("searchdetail3");
 		 return mav;
 	}
 	
 	//디테일 매장 검색 - 제로
-	@GetMapping("/search/detail22")
+	@GetMapping("/search/detailzero")
 	public ModelAndView searchMarketDetail2(@RequestParam("z_num") int z_num) {
 		 ModelAndView mav = new ModelAndView();
 		 List<HomeVO> list = mypageservice.detaillist2(z_num);
 		 mav.addObject("detailresult2", list);
-		 mav.setViewName("searchDetail");
+		 mav.setViewName("searchdetail3");
 		 return mav;
 	}
 	

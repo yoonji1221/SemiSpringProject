@@ -23,7 +23,7 @@ public class HomeController {
 		List<HomeVO> samlist = homeservice.samsungdata();
 		mav.addObject("zerolist", zerolist);
 		mav.addObject("samlist", samlist);
-		mav.setViewName("wherepayhome");
+		mav.setViewName("test");
 		return mav;
 	}
 	

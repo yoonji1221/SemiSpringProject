@@ -53,8 +53,7 @@ function setParentText(name, num){
 
 <br> <button id='hi'  onclick="setParentText('${sam_name }', '${sam_num }');">선택</button>
 
- <!-- 
-      <div id="map" style="width: 700px; height: 500px;"></div>
+ <div id="map" style="width: 700px; height: 500px;"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=109901ab932f557de01522d4798dad18&libraries=services"></script>
 <script>
 
@@ -131,6 +130,6 @@ sam_addrlist.forEach(function(addr, index) {
 
 
 </script>   
-         -->   
+       
 </body>
 </html>

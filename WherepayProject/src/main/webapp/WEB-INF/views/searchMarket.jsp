@@ -42,7 +42,7 @@ function button1_click() {
                    var sam_phone = resultlist[idx]['sam_phone']
 
         
-                   var all = $("<tr><td>"+sam_num+"</td><td><a href='/wherepay/search/detail1?sam_num="+sam_num+"'>"+sam_name+"</a></td><td>"+sam_gu+"&nbsp;"+sam_dong+"&nbsp;"+sam_addr+"</td><td>"+sam_btheme+"</td><td>"+sam_stheme+"</td></tr>");                   
+                   var all = $("<tr><td>"+sam_num+"</td><td><a href='/wherepay/search/detail_card?sam_num="+sam_num+"'>"+sam_name+"</a></td><td>"+sam_gu+"&nbsp;"+sam_dong+"&nbsp;"+sam_addr+"</td><td>"+sam_btheme+"</td><td>"+sam_stheme+"</td></tr>");                   
                $("#table2").append(all);
                 }   
                 }, error : function(e) {
