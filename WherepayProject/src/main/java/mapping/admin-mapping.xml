@@ -131,7 +131,7 @@ select SUM(money) as total from payment where mas_num = #{mas_num}
 
 <!-- 가계부 내역 삭제 -->
 <delete id="deletePayment" parameterType="paymentvo">
-delete payment where pay_num = #{pay_num} and u_num = #{u_num};
+delete payment where pay_num = #{pay_num} and u_num = #{u_num}
 </delete>
 
 <!--  ======================================  신지 test   ==================================== -->

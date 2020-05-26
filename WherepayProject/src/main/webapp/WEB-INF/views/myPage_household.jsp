@@ -258,7 +258,7 @@ function test(){
 								<td>${cardlist.memo }</td>
 								<td>${cardlist.pay_num }</td>
 								<td>${cardlist.u_num }</td>
-								<td> <button onclick ="location.href='/wherepay/deletePayment?u_num=2&pay_num=182'" class="btn btn-primary" style="background-color:#1e4356;color:#ffffff;padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">삭제</button></td>
+								<td> <button onclick ="location.href='/wherepay/deletePayment?u_num=${cardlist.pay_num }&pay_num=${cardlist.pay_num }'" class="btn btn-primary" style="background-color:#1e4356;color:#ffffff;padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">삭제</button></td>
 							</tr>
 						</c:forEach>
 
