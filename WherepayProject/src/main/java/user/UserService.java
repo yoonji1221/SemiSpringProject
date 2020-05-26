@@ -7,6 +7,9 @@ public interface UserService {
 	//로그인
 	public int login(UserVO vo);
 		
+	//mas_num, u_num 가져와서 세션에 저장
+	public List<UserVO> getMasnum(UserVO vo);
+	
 	//세대주 가입 - 기 가입자:1
 	public int alreadyJoin(String jumin);
 	
