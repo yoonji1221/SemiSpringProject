@@ -82,7 +82,6 @@ select * from serviceinfo where info_num = #{info_num}
  select * from zeropay where z_num = #{z_num}
 </select> 
 
-
 <!-- ================================= 효진 query=========================================== -->
 
 <!-- 구성원 확인하기 -->
@@ -214,4 +213,5 @@ insert into users
 (user_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, #{addr}, #{howtoget}, 1,
 #{mas_num}, #{familynum})
 </insert>
+
 </mapper>

@@ -48,17 +48,19 @@ public class UserController {
 	         throws Exception {
 	      
 	      int result = userservice.login(vo);
-	     
+	      int confirm = userservice.getMasnum(vo).get(0).getConfirm();
 	      
-
+	      
 	      ModelAndView mav = new ModelAndView();
 	      
 	      System.out.println(result+"로그인 성공:1, 실패:0");
 	      
-	      if (result == 1) {
+	      if (result == 1 && confirm ==0 || confirm ==2) {
 	         session.setAttribute("dbid", vo.getId());
-	         
 	         List<UserVO> getmasnum = userservice.getMasnum(vo);
+	         
+	         session.setAttribute("confirm", confirm);
+	         
 		      int masnum = getmasnum.get(0).getMas_num();
 		      int unum = getmasnum.get(0).getU_num();
 	          session.setAttribute("u_num", unum);
@@ -68,7 +70,13 @@ public class UserController {
 	         System.out.println(session.getAttribute("mas_num") + "<--로그인하고 masnum");
 	         System.out.println(session.getAttribute("dbid") + "<--로그인하고 세션아이디");
 	         mav.setViewName("redirect:/home");
-	      }else {
+	      }else if(confirm == 1){
+		         response.setContentType("text/html; charset=UTF-8");
+		            PrintWriter out = response.getWriter();
+		            out.println("<script>alert('세대주 승인 후 로그인이 가능합니다.'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
+		            out.flush();
+		            out.close();         
+		   }else {
 	         response.setContentType("text/html; charset=UTF-8");
 	            PrintWriter out = response.getWriter();
 	            out.println("<script>alert('회원 정보가 없습니다'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
