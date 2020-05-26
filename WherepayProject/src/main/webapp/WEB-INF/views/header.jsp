@@ -8,7 +8,7 @@
 <html>
 <head>
 <title>WHERE PAY에 오신 걸 환영합니다!</title>
-<script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
+
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -35,14 +35,18 @@
 <link href="${pageContext.request.contextPath}/resources/Moderna/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-<header id="header" class="fixed-top ">
+<header id="header" class="fixed-top " style="padding-top: 10px;padding-bottom: 10px;height: 69.8105px;">
 <!--     <div class="container"> -->
-
-      <div class="logo float-left" style="margin-left: 200px;">
-        <h1 class="text-light" style="display: inline;"><a href="/wherepay/home"><img src="${pageContext.request.contextPath}/resources/Moderna/assets/img/wherepaylogo.png" alt="" class="img-fluid"></a></h1>
+<a href="/wherepay/home"><img src="${pageContext.request.contextPath}/resources/Moderna/assets/img/wherepaylogo.png" alt="" class="img-fluid"
+style="width: 260px;
+    height: 90px;
+    border-left-width: 50px;
+    margin-left: 300px;
+    margin-bottom: 20px;
+    padding-bottom: 30px;"></a>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      </div>
+      
 
       <div class="nav-menu float-right d-none d-lg-block" style="width: 1100px;">
         <ul>  <!-- 큰 <ul> 시작 -->
@@ -50,10 +54,10 @@
           <li><a href="http://ncov.mohw.go.kr/" target="_blank">About covid-19</a></li>
           <li><a href="/wherepay/search">내 주변 가맹점 찾기</a></li>
           <li><a href="/wherepay/serviceinfo">코로나 관련 서비스</a></li>
-          <li class="drop-down"><a href="">MyPage</a>
+          <li class="drop-down"><a href="" disabled="disabled">MyPage</a>
             <ul>
               <li><a href="/wherepay/login">로그인</a></li>
-              <li class="drop-down"><a href="">회원가입</a>
+              <li class="drop-down"><a href="" disabled="disabled">회원가입</a>
                 <ul>
                   <li><a href="/wherepay/joinmaster1">세대주 회원가입</a></li>
                   <li><a href="/wherepay/joinmember1">구성원 회원가입</a></li>
@@ -68,7 +72,12 @@
 <%} 		else if(session.getAttribute("dbid")!=null) { 
 %>		
 			<li><a href=""><%=session.getAttribute("dbid") %>님 환영합니다</a></li>
-			<li><a href="/wherepay/mypage?mas_num=<%=session.getAttribute("mas_num")%>">마이페이지</a></li>
+			<li class="drop-down"><a href="/wherepay/mypage?mas_num=<%=session.getAttribute("mas_num")%>">마이페이지</a>
+				<ul>
+                  <li><a href="/wherepay/mypage?mas_num=<%=session.getAttribute("mas_num")%>">구성원 관리</a></li>
+                  <li><a href="/wherepay/household?mas_num=<%=session.getAttribute("mas_num")%>&u_num=<%=session.getAttribute("u_num")%>">지출관리</a></li>
+                </ul>
+			</li>
 		    <li><a href="/wherepay/logout">로그아웃</a></li>
 		          	
 <%} 
