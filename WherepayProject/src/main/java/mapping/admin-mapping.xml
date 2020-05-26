@@ -120,12 +120,12 @@ where p.sam_num = s.sam_num and p.u_num = u.u_num and p.mas_num = #{mas_num} ORD
 
 <!-- 지출내역 확인하기 - 제로 -->
 <select id = "showpayment_zero" resultType="paymentvo" parameterType = "int">
-select TO_CHAR(p.paydate,'YYYY-MM-DD') as paydate, p.money, z.z_name, u.name, p.memo from payment p, zeropay z, users u 
+select TO_CHAR(p.paydate,'YYYY-MM-DD') as paydate, p.money, z.z_name, u.name, p.memo, p.u_num, p.pay_num from payment p, zeropay z, users u 
 where p.z_num = z.z_num and p.u_num = u.u_num and p.mas_num = #{mas_num} ORDER BY paydate
 </select>
 
 <!-- 사용내역 총합 -->
-<select id = "useMoneyTotal" resultType="int" parameterType = "int">
+<select id = "useMoneyTotal" resultType="String" parameterType = "int">
 select SUM(money) as total from payment where mas_num = #{mas_num}
 </select>
 
@@ -133,6 +133,13 @@ select SUM(money) as total from payment where mas_num = #{mas_num}
 <delete id="deletePayment" parameterType="paymentvo">
 delete payment where pay_num = #{pay_num} and u_num = #{u_num}
 </delete>
+
+<!-- 구성원 정보 가져오기 -->
+<select id="getUser" resultType="uservo" parameterType = "int">
+select * from users where u_num = #{u_num}
+</select>
+
+
 
 <!--  ======================================  신지 test   ==================================== -->
 
@@ -145,7 +152,7 @@ where id=#{id} and pw=#{pw}
 
 <!-- mas_num, u_num 가져와서 세션에 저장 -->
 <select id="getMasnum" resultType ="uservo" parameterType="uservo">
-select mas_num, u_num
+select mas_num, u_num, confirm
 from users
 where id=#{id}
 </select>

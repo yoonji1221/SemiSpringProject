@@ -63,7 +63,7 @@ public class MypageDAO {
 	}
 	
 	//사용 내역 총합
-	public int useMoney(int mas_num) {
+	public String useMoney(int mas_num) {
 		return session.selectOne("db.useMoneyTotal", mas_num);
 	}
 	
@@ -78,6 +78,11 @@ public class MypageDAO {
 	//지출 내역 삭제
 	public void deletePayment(paymentVO vo) {
 		session.delete("db.deletePayment", vo);
+	}
+	
+	//로그인한 유저정보 가져오기
+	public List<UserVO> getUser(int u_num){
+		return session.selectList("db.getUser", u_num);
 	}
 
 }

@@ -170,7 +170,7 @@ function  validation(){	//빈칸 없이 다썼는지 검사
 						<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
 					</div>
 				
-					<button type ="button" onclick="erchk()" id="join" disabled="disabled" >가입하기
+					<button type ="button" onclick="erchk()" id="join" >가입하기  <!-- disabled="disabled" -->
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
 				</form>
