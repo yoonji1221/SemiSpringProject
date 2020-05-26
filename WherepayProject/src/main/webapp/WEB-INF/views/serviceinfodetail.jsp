@@ -62,7 +62,7 @@
 </thead>
 <tbody>
   <tr>
-    <td class="tg-0pky" rowspan="3">서비스목적</td>
+    <td class="tg-0pky" rowspan="3" nowrap>서비스목적</td>
     <td class="tg-0pky" rowspan="3">${info_goal}</td>
     <td class="tg-0pky">지원형태</td>
     <td class="tg-0pky">${info_how}</td>
@@ -72,13 +72,13 @@
     <td class="tg-0pky">${info_when}</td>
   </tr>
   <tr>
-    <td class="tg-0pky">문의처 전화번호</td>
+    <td class="tg-0pky">문의처<br> 전화번호</td>
     <td class="tg-0pky">${info_phone}</td>
   </tr>
   <tr>
     <td class="tg-0pky" rowspan="2">구비서류</td>
     <td class="tg-0pky" rowspan="2">${info_paper}</td>
-    <td class="tg-0pky">서비스 상세주소</td>
+    <td class="tg-0pky">서비스<br> 상세주소</td>
     <td class="tg-0pky"><a href="${info_url}" target="_blank" >${info_url}</a></td>
   </tr>
   <tr>
@@ -97,7 +97,7 @@
   </tr><br>
 </tbody>
 </table>
-<div style="padding-top: 30px;" align='right'><a id="button1" style="align:right;background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 8px;padding-bottom: 5px;"  href="/wherepay/serviceinfo">
+<div style="padding-top: 30px;" align='right'><a id="button1" style="align:right;background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 8px;padding-bottom: 5px;"  onClick="history.back()" href="#">
 <font size="2px" color="#ffffff" >목록보기</font></a>
       </div>
         
