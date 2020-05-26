@@ -11,9 +11,25 @@
 <meta charset="UTF-8">
 <title>WHERE PAY에 오신 걸 환영합니다!</title>
 
+<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 </head>
 <body>
+<main id="main" style="margin-top: 40px;height: 100px;">
+		<section class="breadcrumbs" style="margin-top: 80px;height: 100px;">
+			<div class="container">
+				<div class="section-title">
+					<div class="d-flex justify-content-between align-items-center">
+						<h2>내 주변 가맹점을 검색해보세요!</h2>
+						<ol>
+							<li><a href="/wherepay/home">Home</a></li>
+							<li>내 주변 가맹점 찾기</li>
+						</ol>
+					</div>
+</div>
+				</div>
+		</section>
+		<div class="container">
 <h1>검색 detail</h1>
 <c:forEach items="${detailresult }" var="detaillist">
 <tr><td >${detaillist.z_num }
@@ -29,7 +45,7 @@
 <c:set var="sam_addr" value="${detaillist.z_addr}" />
 </c:forEach>
 
-		<div id="map" style="width: 700px; height: 500px;"></div>
+		<div id="map" style="width: 700px; height: 500px;"></div></div></main>	
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=109901ab932f557de01522d4798dad18&libraries=services"></script>
 <script>
 
@@ -102,6 +118,9 @@ sam_addrlist.forEach(function(addr, index) {
 
 
 </script>	
-				
+			
 </body>
+
+<!-- footer add -->
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </html>
