@@ -11,7 +11,7 @@ select * from zeropay where z_addr like '%구로구%' or z_addr like '%관악구
 
 <!-- 구로구 삼성카드 데이터 -->
 <select id="samsungdata" resultType="homevo">
-select * from samsungcard where sam_gu like '%구로구%' or sam_gu like '%관악구%'
+select * from samsungcard where sam_gu like '%구로구%' or sam_gu like '%동작구%' 
 </select>
 
 
@@ -129,7 +129,6 @@ where p.z_num = z.z_num and p.u_num = u.u_num and p.mas_num = #{mas_num} ORDER B
 select SUM(money) as total from payment where mas_num = #{mas_num}
 </select>
 
-
 <!--  ======================================  신지 test   ==================================== -->
 
 <!-- 로그인 -->
@@ -139,15 +138,12 @@ from users
 where id=#{id} and pw=#{pw}
 </select>
 
-<!-- 세대주 가입 - 기 가입자:1/ 미가입자:0 -->
+<!-- 세대주 가입 - 기 가입자:어떤 정수 / 미가입자:0 -->
 <select id ="alreadyJoin" resultType="int" parameterType="String">
 select count(*)
-from users u, masters m
-where u.mas_num = m.mas_num
-and m.mas_num =(select mas_num 
-from users
-where id=#{id})
-and u.confirm=0
+from users u , masters m
+where u.mas_num = m.mas_num and 
+m.mas_num = (select mas_num from masters where jumin = #{jumin})
 </select>
 
 <!-- 세대주인지 확인하기 -->
@@ -199,6 +195,4 @@ insert into users
 (user_seq.nextval, #{id}, #{pw}, #{name}, #{phone}, #{addr}, #{howtoget}, 1,
 #{mas_num}, #{familynum})
 </insert>
-
-
 </mapper>
