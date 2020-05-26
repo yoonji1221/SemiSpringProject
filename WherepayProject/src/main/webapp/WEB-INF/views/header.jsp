@@ -7,11 +7,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>WHERE PAY에 오신 걸 환영합니다!</title>
 <script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Moderna Bootstrap Template - Index</title>
 <meta content="" name="descriptison">
 <meta content="" name="keywords">
 
@@ -59,9 +59,6 @@
                   <li><a href="/wherepay/joinmember1">구성원 회원가입</a></li>
                 </ul>
               </li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
             </ul>
           </li>
           <li><a href="contact.html">Contact Us</a></li>

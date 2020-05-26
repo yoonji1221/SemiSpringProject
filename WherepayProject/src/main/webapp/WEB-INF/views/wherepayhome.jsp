@@ -26,7 +26,7 @@
 				 <strong>소비심리 위축</strong> 등으로 경제적 타격을 입은 국민들을 지원하기 위해 정부에서 시행하는 현금 지원 대책이다.
 				  당초 정부는 소득 하위 70%에 4인가구 기준으로 100만 원의 긴급재난지원금을 지급한다고 밝혔으나, 이후 당정 협의 등을 통해 전 국민 지급 방안을 결정했다. 
 				  그리고 4월 29일 국회에서 긴급재난지원금 지급을 위한 2차 추경안이 통과되면서 긴급재난지원금은 선불카드, 신용카드 포인트, 지역상품권 등의 형태로 2020년 5월부터 전 국민에게 지급된다.	</p>
-	<a href="https://www.xn--jj0bb2kr6h965bxcbp8g.kr/sub_02.jsp" class="btn-get-started animated fadeInUp">신청방법 알아보기</a>
+	<a href="https://www.xn--jj0bb2kr6h965bxcbp8g.kr/sub_02.jsp" class="btn-get-started animated fadeInUp" target="blank">신청방법 알아보기</a>
         </div>
       </div>
  </div>
@@ -82,7 +82,7 @@
           <p>지급 유형에 따른 내 주변 가맹점, 한 눈에 확인하세요!</p>
         </div>
 
-        <div class="row aos-init aos-animate" data-aos="fade-up" style="width: 1000px;">
+        <div class="row aos-init aos-animate" data-aos="fade-up" style="width: 1000px;padding-right: 100px;">
           <div class="col-md-5"style="  padding-top: 30px;" align='right'>
 			<ul>
 				<li><input type="radio" name="radiovalue" value="1"
@@ -95,8 +95,13 @@
 					onclick="check1();">서울사랑상품권&nbsp;<img src="${pageContext.request.contextPath}/resources/Moderna/assets/img/marker.png" 
 					style="width: 20px; height:25px;"> </li>
 			</ul>
-				<input id="button1" class="btn-get-started animated fadeInUp" type=button value="내 지역 조회하러 가기" onclick="location.href='/wherepay/search'">         
-          
+				 <div class="entry-content">
+        		 <div class="read-more">
+                <ul>
+                  <li><a id="button1" style="background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px;"  href="/wherepay/search">내 지역 조회하러 가기</a></li>
+                </ul>
+			</div>
+              </div>
           </div>
           <div class="col-md-7 pt-4">
          <div id="map" style="width: 700px; height: 500px;"></div>
@@ -143,7 +148,7 @@
 			</c:forEach>
 			
 			sam_addrlist.forEach(function(addr, index) {
-				content_list.push('<div style="width:150px;text-align:center;padding:6px 0;">'+sam_namelist[index]+'</div>');
+				content_list.push("<div style='width:150px;text-align:center;padding:6px 0;'>"+sam_namelist[index]+"</div>");
 				geocoder.addressSearch(addr, function(result, status) {
 					if (status === kakao.maps.services.Status.OK) {
 						coords[index] = new kakao.maps.LatLng(result[0].y,result[0].x);
@@ -158,19 +163,33 @@
 					    var marker = new kakao.maps.Marker({
 		                      map: map,
 		                      position: markerPosition,
-		                      image: markerImage
+		                      image: markerImage,
+		                      clickable: false
 		                  });
+					    var iwContent = '<div style="padding:5px;"><a href =\'/wherepay/home\'>Hello World!</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+					    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
 					   
 						
 						var infowindow = new kakao.maps.InfoWindow({
-							content : content_list[index]
+							content : content_list[index],
+							//content : iwContent,
+						    removable : iwRemoveable
 						});
+					    
+					    
 						(function(marker, infowindow) {
+							kakao.maps.event.addListener(marker, 'click', function() {
+							      // 마커 위에 인포윈도우를 표시합니다
+							      infowindow.open(map, marker);  
+							      
+							});
+							
 							kakao.maps.event.addListener(marker, 'mouseover',function() {
 										infowindow.open(map, marker);
+										
 									});
-
+							
 							kakao.maps.event.addListener(marker, 'mouseout',function() {
 										infowindow.close();
 									});
