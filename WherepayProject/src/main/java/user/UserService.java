@@ -8,7 +8,7 @@ public interface UserService {
 	public int login(UserVO vo);
 		
 	//세대주 가입 - 기 가입자:1
-	public int alreadyJoin(String id);
+	public int alreadyJoin(String jumin);
 	
 	//세대주 확인
 	public int masCheck(MasVO vo);

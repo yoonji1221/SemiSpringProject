@@ -9,9 +9,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>회원가입</title>
+<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- MATERIAL DESIGN ICONIC FONT -->
+<link rel="stylesheet" href="/wherepay/resources/signup/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+<!-- STYLE CSS -->
+<link rel="stylesheet" href="/wherepay/resources/signup/css/style.css">
+
 
 <script>
 function erchk() {
@@ -20,7 +27,6 @@ function erchk() {
 	      document.sub1.submit();
 	   }
 	};
-
 
 
 $(document).ready(function(){
@@ -69,8 +75,6 @@ function  validation(){	//빈칸 없이 다썼는지 검사
       alert("이름칸이 비었습니다");
    }else if($("#phone").val() == "" ){
       alert("전화번호칸이 비었습니다");
-   }else if($("#addr").val() == "" ){
-      alert("주소칸이 비었습니다");
    }
    else{
       flag = true;
@@ -81,129 +85,61 @@ function  validation(){	//빈칸 없이 다썼는지 검사
 	
 </script>
 
-
-
 </head>
+
 <body>
+<br><br><br>
+	<div class="wrapper" style="background-image: url('/wherepay/resources/signup/images/lightestBlue.JPG');">
+			<div class="inner">
+				<div class="image-holder">
+					<img src="/wherepay/resources/signup/images/familyZone.png" alt="">
+				</div>
+				<form action="<%=path %>/joinmember2" name="sub1" method="post" >
+      
+					<h3>가족 구성원 회원가입</h3>
+					
+					<!-- 이름 -->
+					<div class="form-wrapper">
+					<input type="text" id="name" name="name" 
+                   placeholder="이름을 입력하세요" class="form-control">
+					</div>
+					
+					<!-- id -->
+					<div class="form-wrapper">
+						<input type="text" id="id" name="id" placeholder="아이디를 입력하세요" class="form-control" style="margin-bottom: 0px;">
+						<span id="idCheck"></span>		
+					</div>
 
-   <form action="<%=path %>/joinmember2" name="sub1" method="post" >
-          <table class="table">
-       
-         <tbody>
-         	<tr>
-                  <td>
-                       <strong>이름</strong> 
-                  </td>
-                  <td>                   
-                   <input type="text" id="name" name="name" 
-                   placeholder="이름을 입력하세요" style="width:300px;">
-           
-                  </td>
-                </tr>
-         
-         
-      <!--   	<tr>
-                  <td>
-                      <strong>주민등록번호</strong> 
-                  </td>
-                  <td>                   
-                   <input type="hidden" id="jumin" name="jumin" value = "<%= session.getAttribute("sjumin") %>"style="width:300px;">
-           
-                  </td>
-                </tr>
-         --> 
-         
-            	<tr>
-                  <td>
-                      <strong>아이디</strong>
-                  </td>
-                  <td>
-                    <input type="text" id="id" name="id" placeholder="아이디를 입력하세요" style="width:300px;"><span id="idCheck"></span>
-                  </td>
-                </tr>
-            	
-            	<tr>
-                  <td>
-                      <strong>비밀번호</strong>
-                  </td>
-                  <td>
-                    <input type="password" id="userPw" name="pw" placeholder="비밀번호를 입력하세요" style="width:300px;">
-                  </td>
-                 </tr>
-                 
-            
-                 <tr>
-                  <td>
-                      <strong>전화번호</strong>
-                  </td>
-                  <td>
-                    <input type="text" name="phone" id="to" class="form-control" placeholder="전화번호를 입력하세요" style="width:300px;">
-            <%--        <input type="button" id="phonecheck" value="인증번호 받기" class="btn"> <br>
-                    <input type="text" id="userNum" placeholder="인증번호를 입력해주세요" class="form-control" style="width:300px;"> --%> 
-                  </td>
-                 </tr>
-                 
-                
-      <%--           <tr>
-                  <td>
-                      <strong>주소</strong>
-                  </td>
-                  <td>
-                    <input type="text" name="addr" placeholder="주소를 입력하세요" style="width:300px;" >
-               <button type="button" onclick="openZipSearch()">주소찾기</button> 
-                  </td>
-                 </tr>
-                
-                
-                 <tr>
-                  <td>
-                      <strong>가구원 수</strong>
-                  </td>
-                  <td>
-                    <input type="text" name="familynum" placeholder="ex)4" style="width:300px;" >명
-                  </td>
-                 </tr>
-                
-                
-                <tr>
-                  <td>
-                      <strong>지급방식</strong>
-                  </td>
-                  <td>
-                   <select name ="howtoget" id="howtoget">
-                   	<option>선택안함</option>
-                   	<option value = "신용/체크카드">신용/체크카드</option>
-                   	<option value = "선불카드">선불카드</option>
-                   	<option value = "상품권">상품권</option>
-                   </select>
-                  </td>
-                 </tr>
-                 
-             --%>
-          	
-                 </tbody>
-                 </table>
-                 
-                 
-                 
-            <div style="float:left;">
-            <input onclick="erchk()" type="button" id="join" value="회원가입" disabled="disabled"  
-            style="
-                margin-left: 80px;
-                width: 174px;
-                height: 48px;">
-            </div>
-            
-            <div style="float: center;">
-            <input type="button" value="돌아가기" 
-            onclick="location.href='/wherepay/home'"  style="width: 174px;
-                height: 48px;
-                margin-left: 50px;">
-                </div>
-                
-           
-             </form>
-             
+					<!-- pw -->
+					<div class="form-wrapper">
+						<input type="password" id="userPw" name="pw"placeholder="비밀번호를 입력하세요" class="form-control" style="margin-top: 25px;">
 
+						<i class="zmdi zmdi-lock"></i>
+					</div>
+					
+					<!-- phone -->
+					<div class="form-wrapper">
+						<input type="text" name="phone" id="phone" placeholder="전화번호를 입력하세요" class="form-control">
+					</div>
+					
+<!-- 					<div class="form-wrapper">
+						<select name="" id="" class="form-control">
+							<option value="" disabled="" selected="">Gender</option>
+							<option value="male">Male</option>
+							<option value="femal">Female</option>
+							<option value="other">Other</option>
+						</select>
+						<i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+					</div> -->
+				
+					<button type ="submit" onclick="erchk()" id="join" disabled="disabled" >가입하기
+						<i class="zmdi zmdi-arrow-right"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+		<!-- css끝 -------------------------------------------------------->
+
+ 
 </body>
 </html>

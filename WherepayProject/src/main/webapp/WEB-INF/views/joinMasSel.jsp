@@ -8,9 +8,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
+<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 <script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- MATERIAL DESIGN ICONIC FONT -->
+<link rel="stylesheet" href="/wherepay/resources/signup/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+<!-- STYLE CSS -->
+<link rel="stylesheet" href="/wherepay/resources/signup/css/style.css">
 
 <script>
 //세대주 검색하기
@@ -28,10 +35,11 @@ $(document).ready(function(){
 			success : function(data){			
 				console.log("가져온 데이터"+data);
 				if (data == 1){
-					alert("등록된 세대주임>< 연결해드림~!");
+					alert("등록된 세대주입니다");
 					window.location.href = "/wherepay/joinmember2";
 				}else{
-					alert("세대주 회원가입부터 해야지~!~!");
+					alert("세대주 회원가입을 먼저 해주세요");
+					window.location.href = "/wherepay/joinmember1";
 				}
 			}, 
 			error : function(e) {
@@ -69,32 +77,38 @@ $(document).ready(function(){
 </head>
 <body>
 
-<h5>세대주 검색</h5>
- 
- 	 <form action="<%=path %>/joinmember1/select" name="masselect" method="get" >
- 	 <table class="table">
-  		<tbody>
-  		
-                 <tr>
-                  <td>
-                      <strong>id로 조회하기</strong> 
-                  </td>
-                  <td>
-                       <input type="text" id="id"name="id" 
-                    placeholder="id를 입력하세요" >
+<br><br><br>
 
-                  </td>
-                 </tr>
-                 
 
- 		</tbody>
- 	</table>
- 	
- 	 <input id="button1" type="button" value="세대주 검색하기" >
- 	 
- 	
-	</form> 
+<div class="wrapper" style="background-image: url('/wherepay/resources/signup/images/lightestBlue.JPG');">
+			<div class="inner">
+				<div class="image-holder">
+					<img src="/wherepay/resources/signup/images/familyZone.png" alt="">
+				</div>
+				<form action="<%=path %>/joinmember1/select" name="masselect" method="get"  >
+      
+					<h3>가족 구성원 회원가입</h3>
+					
+					<!-- 아이디로 검색 -->
+					<strong>id로 세대주 조회</strong> 
+					<div class="form-wrapper">
+					<input type="text" id="id"name="id" placeholder="id를 입력하세요" class="form-control">
+                   
+                   
+					</div>
+					
+		
+					<button type ="submit" id="button1">세대주 검색
+						<i class="zmdi zmdi-arrow-right"></i>
+					</button>
+				</form>
+			</div>
+		</div>
+		
 	
+		<!-- css끝 -->
+ 
+
 
 
 
