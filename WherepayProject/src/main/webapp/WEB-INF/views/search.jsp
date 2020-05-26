@@ -10,7 +10,7 @@
 <script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
 <title>WHERE PAY에 오신 걸 환영합니다!</title>
-
+  
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <script>
 //검색결과조회   

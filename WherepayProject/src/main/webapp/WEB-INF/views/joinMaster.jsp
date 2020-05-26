@@ -183,4 +183,7 @@ function  validation(){	//빈칸 없이 다썼는지 검사
 
 
 </body>
+
+<!-- footer add -->
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </html>

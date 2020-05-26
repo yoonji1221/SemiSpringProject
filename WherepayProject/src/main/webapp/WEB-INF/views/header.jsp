@@ -54,6 +54,8 @@ style="width: 260px;
           <li><a href="http://ncov.mohw.go.kr/" target="_blank">About covid-19</a></li>
           <li><a href="/wherepay/search">내 주변 가맹점 찾기</a></li>
           <li><a href="/wherepay/serviceinfo">코로나 관련 서비스</a></li>
+          <% if(session.getAttribute("dbid")==null){
+%>
           <li class="drop-down"><a href="" disabled="disabled">MyPage</a>
             <ul>
               <li><a href="/wherepay/login">로그인</a></li>
@@ -65,6 +67,9 @@ style="width: 260px;
               </li>
             </ul>
           </li>
+          
+         <% } else
+%>
           <li><a href="/wherepay/contact">Contact Us</a></li>
   <% if(session.getAttribute("dbid")==null){
 %>			<!-- <a href="/wherepay/login">로그인</a> -->
@@ -74,7 +79,7 @@ style="width: 260px;
 			<li><a href=""><%=session.getAttribute("dbid") %>님 환영합니다</a></li>
 			<li class="drop-down"><a href="/wherepay/mypage?mas_num=<%=session.getAttribute("mas_num")%>">마이페이지</a>
 				<ul>
-                  <li><a href="/wherepay/mypage?mas_num=<%=session.getAttribute("mas_num")%>">구성원 관리</a></li>
+                  <li><a href="/wherepay/mypage?mas_num=<%=session.getAttribute("mas_num")%>">나의 가족 관리</a></li>
                   <li><a href="/wherepay/household?mas_num=<%=session.getAttribute("mas_num")%>&u_num=<%=session.getAttribute("u_num")%>">지출관리</a></li>
                 </ul>
 			</li>

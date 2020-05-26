@@ -47,16 +47,16 @@
               <li><i class="bx bx-chevron-right"></i> <a href="/wherepay/home">About WHEREPAY</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="/wherepay/serviceinfo">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="/wherepay/search">Search</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="/wherepay/masjoin1">Join</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/wherepay/joinmember1">Join</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Designed by</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://www.instagram.com/yoonzigonzi/">SHIN YOONJI</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://www.instagram.com/hyojin_203/">YOON HYOJIN</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://www.instagram.com/myiqisfifteen/">HWANG SHINJI</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.instagram.com/yoonzigonzi/" target="blank">SHIN YOONJI</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.instagram.com/hyojin_203/" target="blank">YOON HYOJIN</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.instagram.com/myiqisfifteen/" target="blank">HWANG SHINJI</a></li>
             </ul>
           </div>
 

@@ -101,4 +101,8 @@ $(document).ready(function(){
 
 
 </body>
+
+
+<!-- footer add -->
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </html>
