@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%-- <%@ page session="false"%> --%>
 
 <%@ page isELIgnored="false" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
@@ -36,16 +36,16 @@
 </head>
 <body>
 <header id="header" class="fixed-top ">
-    <div class="container">
+<!--     <div class="container"> -->
 
-      <div class="logo float-left">
-        <h1 class="text-light"><a href="/wherepay/home"><img src="${pageContext.request.contextPath}/resources/Moderna/assets/img/wherepaylogo.png" alt="" class="img-fluid"></a></h1>
+      <div class="logo float-left" style="margin-left: 200px;">
+        <h1 class="text-light" style="display: inline;"><a href="/wherepay/home"><img src="${pageContext.request.contextPath}/resources/Moderna/assets/img/wherepaylogo.png" alt="" class="img-fluid"></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <nav class="nav-menu float-right d-none d-lg-block" style="width: 850px;">
-        <ul>
+      <div class="nav-menu float-right d-none d-lg-block" style="width: 1100px;">
+        <ul>  <!-- 큰 <ul> 시작 -->
           <li><a href="/wherepay/home">Home</a></li>
           <li><a href="http://ncov.mohw.go.kr/" target="_blank">About covid-19</a></li>
           <li><a href="/wherepay/search">내 주변 가맹점 찾기</a></li>
@@ -53,7 +53,7 @@
           <li class="drop-down"><a href="">MyPage</a>
             <ul>
               <li><a href="/wherepay/login">로그인</a></li>
-              <li class="drop-down"><a href="/wherepay/join">회원가입</a>
+              <li class="drop-down"><a href="">회원가입</a>
                 <ul>
                   <li><a href="/wherepay/joinmaster1">세대주 회원가입</a></li>
                   <li><a href="/wherepay/joinmember1">구성원 회원가입</a></li>
@@ -61,13 +61,34 @@
               </li>
             </ul>
           </li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
+          <li><a href="/wherepay/contact">Contact Us</a></li>
+  <% if(session.getAttribute("dbid")==null){
+%>			<!-- <a href="/wherepay/login">로그인</a> -->
 
-    </div>
+<%} 		else if(session.getAttribute("dbid")!=null) { 
+%>		
+			<li><a href=""><%=session.getAttribute("dbid") %>님 환영합니다</a></li>
+			<li><a href="/wherepay/mypage?mas_num=<%=session.getAttribute("mas_num")%>">마이페이지</a></li>
+		    <li><a href="/wherepay/logout">로그아웃</a></li>
+		          	
+<%} 
+%>      	
+	     </ul>	<!-- 큰 <ul> 끝 -->
+
+	
+		</div>	
+
+         
+		
+    
+      
+      
+      
+<!--     </div> div class="container"  end -->
+    
+<!--      -->
   </header>
-  
+
  
   
 </body>

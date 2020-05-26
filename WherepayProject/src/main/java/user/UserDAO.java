@@ -17,6 +17,11 @@ public class UserDAO {
 		return session.selectOne("db.login",vo);
 	}
 	
+	//mas_num, u_num 가져와서 세션에 저장
+	public List<UserVO> getMasnum(UserVO vo) {
+		return session.selectList("db.getMasnum", vo);
+	}
+	
 	//세대주 가입 - 기 가입자:1
 	public int alreadyJoin(String jumin) {
 		return session.selectOne("db.alreadyJoin", jumin);

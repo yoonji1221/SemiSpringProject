@@ -138,6 +138,13 @@ from users
 where id=#{id} and pw=#{pw}
 </select>
 
+<!-- mas_num, u_num 가져와서 세션에 저장 -->
+<select id="getMasnum" resultType ="uservo" parameterType="uservo">
+select mas_num, u_num
+from users
+where id=#{id}
+</select>
+
 <!-- 세대주 가입 - 기 가입자:어떤 정수 / 미가입자:0 -->
 <select id ="alreadyJoin" resultType="int" parameterType="String">
 select count(*)
