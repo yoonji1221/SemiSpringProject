@@ -64,8 +64,14 @@ public class MypageServiceImpl implements MypageService {
 	
 	//사용 내역 총합
 	@Override
-	public int useMoney(int mas_num) {
-		return dao.useMoney(mas_num);
+	public String useMoney(int mas_num) {
+		
+		if( dao.useMoney(mas_num) == null) {
+			return "0";
+		}else {
+			return dao.useMoney(mas_num);
+		}
+		
 	}
 	
 	
@@ -78,6 +84,21 @@ public class MypageServiceImpl implements MypageService {
 	public List<HomeVO> category() {
 		return dao.category();
 	}
+
+	//지출내역 삭제
+	public void deletePayment(paymentVO vo) {
+		dao.deletePayment(vo);
+	}
+	
+	
+	//로그인한 유저정보 가져오기
+	@Override
+	public List<UserVO> getUser(int u_num) {
+		return dao.getUser(u_num);
+	}
+
+	
+	
 	
 
 	

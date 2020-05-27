@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
 
 <%@ page isELIgnored="false" contentType = "text/html; charset=UTF-8" %>
 <!DOCTYPE html>
@@ -9,6 +10,7 @@
 <script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
 <meta charset="UTF-8">
 <title>WHERE PAY에 오신 걸 환영합니다!</title>
+<jsp:include page="/WEB-INF/views/header_pop.jsp"></jsp:include>
 
 <script>
 function setParentText(name, num){
@@ -18,110 +20,89 @@ function setParentText(name, num){
 }
 </script>
 
-<jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 </head>
 <body>
+
+<c:forEach items="${detailresult }" var="detaillist">
+<c:set var="sam_num" value="${detaillist.sam_num }" />
+<c:set var="sam_name" value="${detaillist.sam_name }" />
+<c:set var="sam_btheme" value="${detaillist.sam_btheme }" />
+<c:set var="sam_stheme" value="${detaillist.sam_stheme }" />
+<c:set var="sam_phone" value="${detaillist.sam_phone }" />
+<c:set var="sam_addr" value="${detaillist.sam_gu} ${detaillist.sam_dong} ${detaillist.sam_addr}" />
+</c:forEach>
+
+<c:forEach items="${detailresult2 }" var="detaillist">
+<c:set var="sam_num" value="${detaillist.z_num }" />
+<c:set var="sam_name" value="${detaillist.z_name }" />
+<c:set var="sam_addr" value="${detaillist.z_addr}" />
+<c:set var="sam_btheme" value="${detaillist.z_btheme }" />
+<c:set var="sam_stheme" value="${detaillist.z_stheme }" />
+<c:set var="sam_phone" value="${detaillist.z_manager }" />
+</c:forEach>
+
+
 <main id="main" style="margin-top: 40px;">
 		<section class="breadcrumbs" style="margin-top: 80px;height: 100px;">
 			<div class="container">
 				<div class="section-title">
 					<div class="d-flex justify-content-between align-items-center">
-						<h2>검색 결과입니다.</h2>
+						<h2>${sam_name }</h2>
 					</div>
 				</div>
 			</div>
 		</section>
-<!-- css추가1 end -->
 
-
-<!-- <h1>검색 detail</h1> -->
-<c:forEach items="${detailresult }" var="detaillist">
-<tr><td >${detaillist.sam_num }
-</td><td>${detaillist.sam_name }
-</td><td>${detaillist.sam_gu} ${detaillist.sam_dong} ${detaillist.sam_addr}
-</td><td> ${detaillist.sam_btheme}
-</td><td> ${detaillist.sam_stheme}
-</td><td> ${detaillist.sam_phone}
-</td>
-</tr>
-<c:set var="sam_num" value="${detaillist.sam_num }" />
-<c:set var="sam_name" value="${detaillist.sam_name }" />
-<c:set var="sam_addr" value="${detaillist.sam_gu} ${detaillist.sam_dong} ${detaillist.sam_addr}" />
-</c:forEach>
-
-<!-- css 추가 2 -->
-<section class="features">
+<section class="features" style="padding-top:20px;padding-bottom:0px;">
       <div class="container">
-      
-        <div class="section-title">
-        <h2>${sam_name }</h2>
-        <%-- <c:forEach items="${detailresult2 }" var="detaillist">
-        ${detaillist.z_name }
-        </c:forEach> --%>
-        </div> <!-- section-title?????????????????? -->
+
         
-         <div class="row aos-init aos-animate" data-aos="fade-up">
+        <div class="row aos-init aos-animate" data-aos="fade-up">
           <div class="col-md-5"><br><br>
-          <c:forEach items="${detailresult2 }" var="detaillist">
-<table class="table table-bordered table-striped">
-<thead>
+			 <table class="table table-bordered table-striped">
+			<thead>
+			  <tr>
+			    <th nowrap>가맹점명</th>
+			    <th>${sam_name }</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+			    <td>주소</td>
+			    <td>${sam_addr }</td>
+			  </tr>
+			  <tr>
+			    <td>업종</td>
+			    <td>${sam_btheme }</td>
+			  </tr>
+			  <tr>
+			    <td>상세분류</td>
+			    <td>${sam_stheme }</td>
+			  </tr>
+			</tbody>
+			</table>
+			
+			 <button id='hi'  onclick="setParentText('${sam_name }', '${sam_num }');" style="align:right;background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px;">선택</button>
+		</div>
+          
+          
+<div class="col-md-7 pt-4">
+<div id="map" style="width: 700px; height: 500px;"></div>
+ </div>
+        </div>
+
+      </div>
+    </section>
+    
+ </main>
 
 
 
-<tr>
-<th nowrap>가맹점 명</th>
-<th>${sam_name }</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-	<td>주소</td>
-	<td>${detaillist.z_num }</td>
-</tr>
 
-<tr>
-	<td>주소</td>
-	<td>${detaillist.z_name }</td>
-</tr>
 
-<tr>
-	<td>주소</td>
-	<td>${detaillist.z_addr}</td>
-</tr>
-
-<tr>
-	<td>주소</td>
-	<td> ${detaillist.z_btheme}</td>
-</tr>
-<tr>
-	<td>주소</td>
-	<td> ${detaillist.z_stheme}</td>
-</tr>
-<tr>
-	<td>주소</td>
-	<td> ${detaillist.z_manager}</td>
-</tr>
-</tbody>
-</table>
-
-<c:set var="sam_num" value="${detaillist.z_num }" />
-<c:set var="sam_name" value="${detaillist.z_name }" />
-<c:set var="sam_addr" value="${detaillist.z_addr}" />
-</c:forEach>
-	
-
-<br> <button id='hi'  onclick="setParentText('${sam_name }', '${sam_num }');">선택</button>
-
-		
-		</div><!--div class="col-md-5"  -->
-<div class="col-md-7 pt-4">		
- <div id="map" style="width: 700px; height: 500px;"></div>
-</div>
  
- </div><!-- row aos-init aos-animate -->
-</div> <!-- div class="container" -->
-</section> <!-- section class="features" -->
-</main>	
+
+      <div id="map" style="width: 700px; height: 500px;"></div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=109901ab932f557de01522d4798dad18&libraries=services"></script>
 <script>
 
@@ -199,5 +180,6 @@ sam_addrlist.forEach(function(addr, index) {
 
 </script>   
        
+
 </body>
 </html>

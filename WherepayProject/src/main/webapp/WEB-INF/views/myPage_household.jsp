@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
+
 <meta charset="UTF-8">
 <title>Mypage</title>
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
@@ -16,7 +16,8 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
 function cardPopup() { 
@@ -28,19 +29,24 @@ function zeroPopup() {
 	var url = "/wherepay/searchMarket2";
 	window.open(url, "b", "width=800, height=400, left=100, top=50"); 
 	}
-	
-function test(){
+
 	$(function() {
-		alert("test");
 		$("#paydate").datepicker({
 			dateFormat : 'yy-mm-dd'
 		});
 	});
-}
+
 
 </script>
 
-
+<style>
+th{
+font-size: large;
+}
+td{
+font-size: medium;
+}
+</style>
 </head>
 <body>
 
@@ -55,7 +61,7 @@ function test(){
 					<div class="container">
 						<div class="section-title">
 							<div class="d-flex justify-content-between align-items-center">
-								<h2 style="color: #000080;">${userlist.name}세대주님의  마이페이지</h2>
+								<h2 style="color: #000080;">${userlist.name}님의  마이페이지</h2>
 							</div>
 						</div>
 					</div>
@@ -138,6 +144,7 @@ function test(){
 					<script>
 						var total = parseInt(${totalMoney});
 						var use = parseInt(${useMoney});
+										
 						var money = total - use;
 						document.write("<h4>" + money+"원</h4>");			
 					</script>
@@ -165,7 +172,7 @@ function test(){
 				<h2>지출 내역 입력</h2>
 			</div>
 												
-		<section class="team aos-init aos-animate" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500" style="padding-left: 100px; padding-top: 0px;padding-bottom: 0px;">
+		<section class="team aos-init aos-animate" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500" style="padding-left: 0px; padding-top: 0px;padding-bottom: 0px;">
 	      <div class="container">
 	
 	        <div class="row">
@@ -173,47 +180,48 @@ function test(){
 		<form action="/wherepay/household/insertPayment?mas_num=${mas_num}" class="form-inline" method="get">
 			 
 			  <div class="form-group">
-			  
-			  	
-						
-			    <label for="exampleInputDate" > 날짜 &nbsp;</label>
-				<input type="text" id="paydate" name="paydate" onclick="test();" > &nbsp; &nbsp;		
+				
+			    <label for="exampleInputDate" style="font-size: medium;"> 날짜 &nbsp;</label>
+				<input type="text" id="paydate" name="paydate" onclick="test();"  style="font-size: medium;"> &nbsp; &nbsp;		
 			  </div>
 			  <div class="form-group">
-			    <label for="exampleInputMoney" >금액 &nbsp;</label>
-				<input type="text" id="money" name="money" > <label for="exampleInputMoney">원</label> &nbsp; &nbsp;
+			    <label for="exampleInputMoney" style="font-size: medium;">금액 &nbsp;</label>
+				<input type="text" id="money" name="money" style="font-size: medium;"> <label for="exampleInputMoney" style="font-size: medium;">원</label> &nbsp; &nbsp;
 			  </div>
 			   <div class="form-group">
-			    <label for="exampleInputStore" >가게명 &nbsp;</label>
-				<input type="text" id="ppInput" name="store_name" placeholder="매장을 검색하세요" style="width:200px">&nbsp;&nbsp;
+			    <label for="exampleInputStore" style="font-size: medium;">가게명 &nbsp;</label>
+				<input type="text" id="ppInput" name="store_name" placeholder="매장을 검색하세요" style="width:200px; font-size: medium;">&nbsp;&nbsp;
 				 <c:choose>
 								<c:when test="${howtoget eq '신용카드/체크카드' }">
 									<c:set var="sam_num" value="1" />
 									<input type="hidden" id="pInput" name="sam_num">
 									<input type="hidden" id="check_num" name="check_num" value='1'>
-									<input type="button" value="매장 검색" class="btn btn-default" onclick="cardPopup();" style="background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px;" />
+									<input type="button" value="매장 검색" class="btn btn-default" onclick="cardPopup();" style="background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px; font-size: medium;" />
 								</c:when>
 								<c:when test="${howtoget eq '선불카드' }">
 									<c:set var="z_num" value="2" />
 									<input type="hidden" id="pInput" name="z_num">
 									<input type="hidden" id="check_num" name="check_num" value='2'>
-									<input type="button" value="매장 검색" class="btn btn-default" onclick="zeroPopup();" style="background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px;"/>
+									<input type="button" value="매장 검색" class="btn btn-default" onclick="zeroPopup();" style="background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px; font-size: medium;"/>
 								</c:when>
 								<c:when test="${howtoget eq '상품권' }">
 									<c:set var="z_num" value="2" />
 									<input type="hidden" id="pInput" name="z_num">
 									<input type="hidden" id="check_num" name="check_num" value='2'>
-									<input type="button" value="매장 검색" class="btn btn-default" onclick="zeroPopup();" style="background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px;"/>
+									<input type="button" value="매장 검색" class="btn btn-default" onclick="zeroPopup();" style="background-color:#1e4356;color:#ffffff;padding-left: 7px;padding-right: 7px;padding-top: 3px;padding-bottom: 3px; font-size: medium;"/>
 								</c:when>
 							</c:choose>
 				 </div>
 				  <div class="form-group">
-				    &nbsp;&nbsp;<label for="exampleInputStore"  >메모 &nbsp;</label>
-				     <input type="text" id="memo" name="memo"  style="width:200px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    &nbsp;&nbsp;<label for="exampleInputStore"  style="font-size: medium;">메모 &nbsp;</label>
+				     <input type="text" id="memo" name="memo"  style="width:200px; font-size: medium;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  </div>
-	
-				  <button type="submit" class="btn btn-primary" style="background-color:#1e4356;color:#ffffff;padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">입력</button>
-	
+				  
+				  <input type="hidden" id="mas_num" name="mas_num" value='${mas_num}'>	
+				  <input type="hidden" id="u_num" name="u_num" value='<%=request.getParameter("u_num")%>'>		
+
+				  <button type="submit" class="btn btn-primary" style="font-size: medium; background-color:#1e4356;color:#ffffff;padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;">입력</button>
+				
 	              </form>
 	              
 				</div>
@@ -242,26 +250,55 @@ function test(){
 							<th>사용 매장</th>
 							<th>사용자</th>
 							<th>메모</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${cardlist }" var="cardlist">
+						
+						<c:set var="u_num" value="${cardlist.u_num }" />
+						<c:set var="u_num_session" value='<%=request.getParameter("u_num") %>' />
+						
 							<tr>
 								<td>${cardlist.paydate }</td>
 								<td>${cardlist.money }원</td>
 								<td>${cardlist.sam_name }</td>
 								<td>${cardlist.name }</td>
 								<td>${cardlist.memo }</td>
+								<td>
+								<script>
+								var unum= parseInt(${u_num});
+								var sessionnum = parseInt(${u_num_session});
+												
+								if(unum == sessionnum){
+									document.write("<button onclick =\"location.href='/wherepay/deletePayment?u_num=${cardlist.u_num }&pay_num=${cardlist.pay_num }'\" class=\"btn btn-primary\" style=\"font-size: medium; background-color:#1e4356;color:#ffffff;padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;\">삭제</button>");
+								}									
+								</script>
+								</td>
+								
+							
 							</tr>
 						</c:forEach>
-
 						<c:forEach items="${zerolist }" var="zerolist">
+						<c:set var="u_num" value="${zerolist.u_num }" />
+						<c:set var="u_num_session" value='<%=request.getParameter("u_num") %>' />
+						
 							<tr>
 								<td>${zerolist.paydate }</td>
 								<td>${zerolist.money }원</td>
 								<td>${zerolist.z_name }</td>
 								<td>${zerolist.name }</td>
 								<td>${zerolist.memo }</td>
+								<td>
+								<script>
+								var unum= parseInt(${u_num});
+								var sessionnum = parseInt(${u_num_session});
+												
+								if(unum == sessionnum){
+									document.write("<button onclick =\"location.href='/wherepay/deletePayment?u_num=${zerolist.u_num }&pay_num=${zerolist.pay_num }'\" class=\"btn btn-primary\" style=\" font-size: medium; background-color:#1e4356;color:#ffffff;padding-left: 15px;padding-right: 15px;padding-top: 3px;padding-bottom: 3px;\">삭제</button>");
+								}									
+								</script>
+								</td>
 							</tr>
 						</c:forEach>
 

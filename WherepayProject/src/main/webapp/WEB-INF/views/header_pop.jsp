@@ -7,7 +7,7 @@
 <html>
 <head>
 <title>WHERE PAY에 오신 걸 환영합니다!</title>
-<script src="/wherepay/resources/jquery-3.2.1.min.js"></script>
+
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 

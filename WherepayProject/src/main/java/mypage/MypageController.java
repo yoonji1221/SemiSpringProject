@@ -3,6 +3,7 @@ package mypage;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,13 @@ public class MypageController {
 	
 	//나의 가구관리 
 	@RequestMapping("/mypage")
-	public ModelAndView masterMypage(@RequestParam("mas_num") int mas_num) {
+	public ModelAndView masterMypage(@RequestParam("mas_num") int mas_num, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		
+		int u_num = Integer.parseInt(session.getAttribute("u_num").toString());
+		List<UserVO> userinfo = mypageservice.getUser(u_num);
+		mav.addObject("userinfo", userinfo);
+		
 		List<UserVO> list = mypageservice.getUserList(mas_num);
 		mav.addObject("list", list);
 		mav.setViewName("myPage_manage");
@@ -57,9 +63,11 @@ public class MypageController {
 		mav.addObject("zerolist", zerolist);
 		
 		//사용 내역 총합계
-		int useMoney = mypageservice.useMoney(mas_num);
+		System.out.println("444444");
+		int useMoney = Integer.parseInt(mypageservice.useMoney(mas_num));
+		System.out.println( mypageservice.useMoney(mas_num) +"_________");
 		mav.addObject("useMoney", useMoney);
-		
+	
 		mav.setViewName("myPage_household");
 		return mav;
 	}
@@ -144,6 +152,18 @@ public class MypageController {
 		 ModelAndView mav = new ModelAndView();
 		 mav.setViewName("calender");
 		 return mav;
+	}
+	
+	//지출 내역 삭제
+	@RequestMapping("/deletePayment")
+	public String deletePayment(@RequestParam("u_num") int u_num, @RequestParam("pay_num") int pay_num, paymentVO vo, HttpSession session) {	
+		int mas_num = Integer.parseInt(session.getAttribute("mas_num").toString());
+		u_num = Integer.parseInt(session.getAttribute("u_num").toString());
+		vo.setPay_num(pay_num);
+		vo.setU_num(u_num);
+		mypageservice.deletePayment(vo);
+		System.out.println("삭제?" + mas_num + " .,," + u_num + " .,," + pay_num);
+		return "redirect:/household?mas_num=" + mas_num +"&u_num=" + u_num;
 	}
 			
 

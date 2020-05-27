@@ -33,10 +33,16 @@ public interface MypageService {
 	public List<paymentVO> showpayment_zero(int mas_num);
 	
 	//사용 내역 총합
-	public int useMoney(int mas_num);
+	public String useMoney(int mas_num);
 	
 	public List<HomeVO> getGu();
 
 	public List<HomeVO> category();
+	
+	//지출 내역 삭제
+	public void deletePayment(paymentVO vo);
+	
+	//로그인한 유저정보 가져오기
+	public List<UserVO> getUser(int u_num);
 
 }
