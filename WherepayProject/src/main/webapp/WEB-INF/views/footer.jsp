@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Moderna Bootstrap Template - Index</title>
 <meta content="" name="descriptison">
 <meta content="" name="keywords">
 

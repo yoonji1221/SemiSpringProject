@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,22 +48,24 @@ public class UserController {
 			   HttpServletRequest request,HttpSession session, HttpServletResponse response)
 	         throws Exception {
 	      
+		  
 	      int result = userservice.login(vo);
-	      int confirm = userservice.getMasnum(vo).get(0).getConfirm();
-	      
-	      
+	      List<UserVO> getmasnum = userservice.getMasnum(vo);
+	   	      
 	      ModelAndView mav = new ModelAndView();
+	      System.out.println(userservice.getMasnum(vo).get(0).getConfirm()+"??????????????");
+	      
 	      
 	      System.out.println(result+"로그인 성공:1, 실패:0");
 	      
-	      if (result == 1 && confirm ==0 || confirm ==2) {
-	         session.setAttribute("dbid", vo.getId());
-	         List<UserVO> getmasnum = userservice.getMasnum(vo);
-	         
+	      if (result == 1 && userservice.getMasnum(vo).get(0).getConfirm() !=1 ) {
+	    	  if(getmasnum.get(0).getConfirm() ==0 || getmasnum.get(0).getConfirm() ==2) {
+	         int confirm = getmasnum.get(0).getConfirm();
 	         session.setAttribute("confirm", confirm);
-	         
+	         System.out.println(confirm+"세션 confirm");
 		      int masnum = getmasnum.get(0).getMas_num();
 		      int unum = getmasnum.get(0).getU_num();
+		      session.setAttribute("dbid", vo.getId());
 	          session.setAttribute("u_num", unum);
 	          session.setAttribute("mas_num", masnum);
 	         
@@ -70,16 +73,21 @@ public class UserController {
 	         System.out.println(session.getAttribute("mas_num") + "<--로그인하고 masnum");
 	         System.out.println(session.getAttribute("dbid") + "<--로그인하고 세션아이디");
 	         mav.setViewName("redirect:/home");
-	      }else if(confirm == 1){
+	      }
+	      }else if(result==1 && userservice.getMasnum(vo).get(0).getConfirm()  == 1){
+	    	  int confirm = getmasnum.get(0).getConfirm();
+		         session.setAttribute("confirm", confirm);
+		         System.out.println(confirm+"세션 confirm");
 		         response.setContentType("text/html; charset=UTF-8");
 		            PrintWriter out = response.getWriter();
 		            out.println("<script>alert('세대주 승인 후 로그인이 가능합니다.'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
 		            out.flush();
 		            out.close();         
 		   }else {
+			   System.out.println("durldurl");
 	         response.setContentType("text/html; charset=UTF-8");
 	            PrintWriter out = response.getWriter();
-	            out.println("<script>alert('회원 정보가 없습니다'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
+	            out.println("<script>alert('아이디 비밀번호를 다시 확인해주세요.'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
 	            out.flush();
 	            out.close();         
 	      }
@@ -173,30 +181,55 @@ public class UserController {
 	}
 	
 	
-	//세대주 회원가입
-	@RequestMapping(value ="/joinmaster2", method = RequestMethod.POST)
-	public String join (UserVO vo, HttpServletResponse response, HttpServletRequest request) throws Exception {
-		
-		String path = null;
-		vo.setName(request.getParameter("name"));	//session으로 써도 되고 
-		vo.setJumin(request.getParameter("jumin"));	//parameter로 써도 됨
+	   //세대주 회원가입
+	   @RequestMapping(value ="/joinmaster2", method = RequestMethod.POST)
+	   public String join (UserVO vo,  HttpServletResponse response, HttpServletRequest request) throws Exception {
+	      int result=0;
+	      String path = null;
+	      
+	      vo.setName(request.getParameter("name"));   //session으로 써도 되고 
+	      vo.setJumin(request.getParameter("jumin"));   //parameter로 써도 됨
 
-		System.out.println(request.getParameter("name"));//input name=""값을 가져옴 
-		System.out.println(request.getParameter("id"));
-		System.out.println(request.getParameter("pw"));
-	
+	      System.out.println(request.getParameter("name"));//input name=""값을 가져옴 
+	      System.out.println(request.getParameter("id"));
+	      System.out.println(request.getParameter("pw"));
+	   
+	      
+	      
+	      //id pw phone 형식에 맞게 작성(정규표현식)
+	      String regExpIdPw = "\\w+";
+	      String regExpPhone = "(02|010)-\\d{3,4}-\\d{4}";
+	   //   String id = request.getParameter("id");
+	      String pw = request.getParameter("pw");
+	      String phone = request.getParameter("phone");
+	      
+	   //   boolean resultExpId = Pattern.matches(regExpIdPw, id);
+	      boolean resultExpPw = Pattern.matches(regExpIdPw, pw);
+	      boolean resultExpPhone = Pattern.matches(regExpPhone, phone);
+	      
+	      if (resultExpPw&&resultExpPhone) {
+	         result = userservice.join(vo);
+	      }else {
+	         response.setContentType("text/html; charset=UTF-8");
+	         PrintWriter out = response.getWriter();
+	            out.println("<script>alert('형식에 맞게 작성해주세요'); location.href='/wherepay/joinmaster2'; </script>"); //history.go(-1);        
+	               out.flush();
+	               out.close();  
+	           path = "redirect:/wherepay/joinmaster2";
+	      }
+	      
 
-		int result = userservice.join(vo);		
-		if (result ==1) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-				out.println("<script>alert('회원가입에 성공하였습니다.'); location.href='/wherepay/home'; </script>"); //history.go(-1);        
-	            out.flush();
-	            out.close();  
-	        path = "redirect:/wherepay/joinmaster1";	
-		}
-		 return path;
-	}
+	            
+	      if (result ==1) {
+	         response.setContentType("text/html; charset=UTF-8");
+	         PrintWriter out = response.getWriter();
+	            out.println("<script>alert('회원가입에 성공하였습니다.'); location.href='/wherepay/home'; </script>"); //history.go(-1);        
+	               out.flush();
+	               out.close();  
+	           path = "redirect:/wherepay/joinmaster1";   
+	      }
+	       return path;
+	   }
 
 	
 	/* ---구성원 회원가입--- */
@@ -236,54 +269,87 @@ public class UserController {
 		}
 		
 	
-		//구성원 회원가입
-		@RequestMapping(value ="/joinmember2", method = RequestMethod.POST)
-		public String joinMember (UserVO vo, HttpServletResponse response, 
-				HttpServletRequest request, HttpSession session) throws Exception {
-			
-			String path = null;
-		
-			//session에 저장된 id를 받아와서 사용
-			String id = (String)session.getAttribute("sid");
-			System.out.println(id);	
-			
-			List<UserVO> list = userservice.autoSelect(id);
-			vo.setAddr(list.get(0).getAddr());
-			vo.setFamilynum(list.get(0).getFamilynum());
-			vo.setHowtoget(list.get(0).getHowtoget());
-			vo.setMas_num(list.get(0).getMas_num());
-			
-			//구성원 수 - 이미 정해진것
-			int familyNum=Integer.parseInt(list.get(0).getFamilynum());
-			System.out.println(list.get(0).getFamilynum()+"aaaaaaaa");
-			System.out.println(familyNum+"bbbbbbbbbbb");
-			
-			//이미 getMas_num - mas_num으로 가입한애들 수: 
-			int masCount = userservice.fnumCheck(id);
-			System.out.println(masCount+"이미 getMas_num - mas_num으로 가입한애들 수");
-			
-			if (familyNum > masCount ) {				
-				int result = userservice.joinMember(vo);		
-				if (result ==1) {
-					response.setContentType("text/html; charset=UTF-8");
-					PrintWriter out = response.getWriter();
-					out.println("<script>alert('회원가입에 성공하였습니다.'); location.href='/wherepay/home'; </script>"); //history.go(-1);        
-					out.flush();
-					out.close();  
-				//	path = "redirect:/wherepay/joinmember1";	
-				}
-			}
-			else {
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('이미 회원가입을 모두 끝낸가족입니다.'); location.href='/wherepay/joinmember2'; </script>"); //history.go(-1);        
-				out.flush();
-				out.close();  
-				path = "redirect:/wherepay/home";
-				
-			}
-			 return path;
-		}
+
+	      //구성원 회원가입
+	      @RequestMapping(value ="/joinmember2", method = RequestMethod.POST)
+	      public String joinMember (UserVO vo, HttpServletResponse response, 
+	            HttpServletRequest request, HttpSession session) throws Exception {
+	         
+	         int result =0;
+	         String path = null;
+	      
+	         //session에 저장된 id를 받아와서 사용
+	         String id = (String)session.getAttribute("sid");   //세대주 ID
+	         System.out.println(id);   
+	         
+	         List<UserVO> list = userservice.autoSelect(id);
+	         vo.setAddr(list.get(0).getAddr());
+	         vo.setFamilynum(list.get(0).getFamilynum());
+	         vo.setHowtoget(list.get(0).getHowtoget());
+	         vo.setMas_num(list.get(0).getMas_num());
+	         
+	         
+	         //id pw phone 형식에 맞게 작성(정규표현식)
+	         String regExpName = "\\W+";
+	         String regExpIdPw = "\\w+";
+	         String regExpPhone = "(02|010)-\\d{3,4}-\\d{4}";
+	         String name = request.getParameter("name");
+	      //   String mid = request.getParameter("id");   //구성원 ID
+	         String pw = request.getParameter("pw");
+	         String phone = request.getParameter("phone");
+	         
+	         boolean resultExpName = Pattern.matches(regExpName, name);
+	      //   boolean resultExpId = Pattern.matches(regExpIdPw, mid);
+	         boolean resultExpPw = Pattern.matches(regExpIdPw, pw);
+	         boolean resultExpPhone = Pattern.matches(regExpPhone, phone);
+	         
+	         
+	         
+	         
+	         //구성원 수 - 이미 정해진것
+	         int familyNum=Integer.parseInt(list.get(0).getFamilynum());
+	         System.out.println(list.get(0).getFamilynum()+"aaaaaaaa");
+	         System.out.println(familyNum+"bbbbbbbbbbb");
+	         
+	         //이미 getMas_num - mas_num으로 가입한애들 수: 
+	         int masCount = userservice.fnumCheck(id);
+	         System.out.println(masCount+"이미 getMas_num - mas_num으로 가입한애들 수");
+	      
+	         
+	         if (familyNum > masCount ) {            
+	            result = userservice.joinMember(vo);
+	            
+	            if (resultExpName  && resultExpPw && resultExpPhone) {
+	               result = userservice.joinMember(vo);
+	            }else {
+	               response.setContentType("text/html; charset=UTF-8");
+	               PrintWriter out = response.getWriter();
+	                  out.println("<script>alert('형식에 맞게 작성해주세요'); location.href='/wherepay/joinmaster2'; </script>"); //history.go(-1);        
+	                     out.flush();
+	                     out.close();  
+	                 path = "redirect:/wherepay/joinmaster2";
+	            }
+	            
+	            
+	            if (result ==1) {
+	               response.setContentType("text/html; charset=UTF-8");
+	               PrintWriter out = response.getWriter();
+	               out.println("<script>alert('회원가입에 성공하였습니다.'); location.href='/wherepay/home'; </script>"); //history.go(-1);        
+	               out.flush();
+	               out.close();  
+	            //   path = "redirect:/wherepay/joinmember1";   
+	            }
+	         }else {
+	            response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println("<script>alert('이미 회원가입을 모두 끝낸가족입니다.'); location.href='/wherepay/joinmember2'; </script>"); //history.go(-1);        
+	            out.flush();
+	            out.close();  
+	            path = "redirect:/wherepay/home";
+	            
+	         }
+	          return path;
+	      }
 
 
 }

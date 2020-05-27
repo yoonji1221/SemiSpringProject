@@ -28,7 +28,7 @@
 	<link rel="stylesheet" type="text/css" href="/wherepay/resources/Login_v10/css/main.css">
 <!--===============================================================================================-->
 
-<title>Insert title here</title>
+
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 
@@ -111,4 +111,6 @@
 <script src="/resources/Login_v10/js/main.js"></script>
 
 </body>
+<!-- footer add -->
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </html>
