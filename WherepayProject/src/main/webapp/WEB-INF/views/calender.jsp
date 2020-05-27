@@ -1,51 +1,40 @@
-<html>
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-	  
-	  var count = 0;
-	  var data;
-	  var chart;
-      var options;
-	  
-      function drawChart() {
-	  data = new google.visualization.DataTable();
-	  data.addColumn('string', 'Dialogue');
-	  data.addColumn('number', 'Send');
-	  data.addColumn('number', 'Resoponse');
-	  data.addRow(['Dialogue 1', 1, 1]);
-	  
-        options = {
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['Move', 'Percentage'],
+          ["King's pawn (e4)", 44],
+          ["Queen's pawn (d4)", 31],
+          ["Knight to King 3 (Nf3)", 12],
+          ["Queen's bishop pawn (c4)", 10],
+          ['Other', 3]
+        ]);
+
+        var options = {
+          width: 800,
+          legend: { position: 'none' },
           chart: {
-            title: 'Analysis of Dialogue System',
-            subtitle: '',
-          }
+            title: 'Chess opening moves',
+            subtitle: 'popularity by percentage' },
+          axes: {
+            x: {
+              0: { side: 'top', label: 'White to move'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
         };
 
-        chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        // Convert the Classic options to Material options.
         chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-      
-      function addData(){
-	    count++;
-		data.addRow(['Dialogue ' + count, Number(document.getElementById('sendInput').value), Number(document.getElementById('responseInput').value)]);
-		chart.draw(data, options)
-      }
-      function removeData(){
-		data.removeRow(0);
-		chart.draw(data, opstions)
-      }
+      };
     </script>
   </head>
   <body>
-    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
-    send:<br>
-    <input id="sendInput" type="text"><br>
-    response:<br>
-    <input id="responseInput" type="text"><br><br>
-    <button onclick="addData();">add</button> <button onclick="removeData();">remove</button>
+    <div id="top_x_div" style="width: 800px; height: 600px;"></div>
   </body>
 </html>

@@ -97,6 +97,18 @@ public class MypageServiceImpl implements MypageService {
 		return dao.getUser(u_num);
 	}
 
+	@Override
+	public List<UserVO> getGroup(int mas_num) {
+		return dao.getGroup(mas_num);
+	}
+
+	@Override
+	public List<paymentVO> getPayment(int mas_num) {
+		return dao.getPayment(mas_num);
+	}
+	
+	
+
 	
 	
 	

@@ -84,5 +84,15 @@ public class MypageDAO {
 	public List<UserVO> getUser(int u_num){
 		return session.selectList("db.getUser", u_num);
 	}
+	
+	//그룹 내의 구성원 정보 모두 가져오기
+	public List<UserVO> getGroup(int mas_num){
+		return session.selectList("db.getGroup", mas_num);
+	}
+	
+	//구성원 별 사용 총액
+	public List<paymentVO> getPayment(int mas_num){
+		return session.selectList("db.getPayment", mas_num);
+	}
 
 }

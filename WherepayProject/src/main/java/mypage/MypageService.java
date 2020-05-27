@@ -45,4 +45,9 @@ public interface MypageService {
 	//로그인한 유저정보 가져오기
 	public List<UserVO> getUser(int u_num);
 
+	//그룹 내의 구성원 정보 모두 가져오기
+	public List<UserVO> getGroup(int mas_num);
+	
+	//구성원 별 사용 총액
+	public List<paymentVO> getPayment(int mas_num);
 }
