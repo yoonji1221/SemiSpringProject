@@ -27,7 +27,7 @@ public class UserController {
 	
 	@Autowired
 	UserService userservice;
-	
+	//신지푸쉬받아라악
 	
 	
 	/* ---로그인--- */
