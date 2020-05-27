@@ -34,7 +34,7 @@ public class MypageController {
 		
 		List<UserVO> list = mypageservice.getUserList(mas_num);
 		mav.addObject("list", list);
-		mav.setViewName("myPage_manage");
+		mav.setViewName("mypage_main");
 		return mav;
 	}
 
@@ -81,7 +81,7 @@ public class MypageController {
 		 List<paymentVO> paylist = mypageservice.getPayment(mas_num);
 		 mav.addObject("paylist", paylist);
 	
-		mav.setViewName("myPage_household");
+		mav.setViewName("mypage_payment");
 		return mav;
 	}
 	

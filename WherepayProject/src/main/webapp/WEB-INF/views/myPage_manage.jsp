@@ -52,6 +52,7 @@ if(Integer.parseInt(session.getAttribute("confirm").toString()) == 0){
           <c:forEach items="${list }" var="userlist">
          <c:if test="${userlist.confirm eq '0'}">
          
+
            <section class="breadcrumbs" style="margin-top: 80px;height: 100px;">
                <div class="container">
                   <div class="section-title">
