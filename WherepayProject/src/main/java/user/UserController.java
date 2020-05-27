@@ -27,7 +27,7 @@ public class UserController {
 	
 	@Autowired
 	UserService userservice;
-	
+	//신지푸쉬받아라악
 	
 	
 	/* ---로그인--- */
@@ -42,51 +42,58 @@ public class UserController {
 	}
 	
 	
-	   // 로그인 보내기
-	   @RequestMapping(value = "/login", method = RequestMethod.POST)
-	   public ModelAndView login(@ModelAttribute("UserVO") UserVO vo, 
-			   HttpServletRequest request,HttpSession session, HttpServletResponse response)
-	         throws Exception {
-	      
-	      int result = userservice.login(vo);
-	      int confirm = userservice.getMasnum(vo).get(0).getConfirm();
-	      
-	      
-	      ModelAndView mav = new ModelAndView();
-	      
-	      System.out.println(result+"로그인 성공:1, 실패:0");
-	      
-	      
-	      if (result == 1 && confirm ==0 || confirm ==2) {
-	         session.setAttribute("dbid", vo.getId());
-	         List<UserVO> getmasnum = userservice.getMasnum(vo);
-	         
-	         session.setAttribute("confirm", confirm);
-	         
-		      int masnum = getmasnum.get(0).getMas_num();
-		      int unum = getmasnum.get(0).getU_num();
-	          session.setAttribute("u_num", unum);
-	          session.setAttribute("mas_num", masnum);
-	         
-	         System.out.println(session.getAttribute("u_num") + "<--로그인하고 unum");
-	         System.out.println(session.getAttribute("mas_num") + "<--로그인하고 masnum");
-	         System.out.println(session.getAttribute("dbid") + "<--로그인하고 세션아이디");
-	         mav.setViewName("redirect:/home");
-	      }else if(confirm == 1){
-		         response.setContentType("text/html; charset=UTF-8");
-		            PrintWriter out = response.getWriter();
-		            out.println("<script>alert('세대주 승인 후 로그인이 가능합니다.'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
-		            out.flush();
-		            out.close();         
-		   }else {
-	         response.setContentType("text/html; charset=UTF-8");
-	            PrintWriter out = response.getWriter();
-	            out.println("<script>alert('회원 정보가 없습니다'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
-	            out.flush();
-	            out.close();         
-	      }
-	      return mav;
-	   }
+
+    // 로그인 보내기
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ModelAndView login(@ModelAttribute("UserVO") UserVO vo, 
+          HttpServletRequest request,HttpSession session, HttpServletResponse response)
+          throws Exception {
+       
+      
+       int result = userservice.login(vo);
+       List<UserVO> getmasnum = userservice.getMasnum(vo);
+             
+       ModelAndView mav = new ModelAndView();
+       System.out.println(userservice.getMasnum(vo).get(0).getConfirm()+"??????????????");
+       
+       
+       System.out.println(result+"로그인 성공:1, 실패:0");
+       
+       if (result == 1 && userservice.getMasnum(vo).get(0).getConfirm() !=1 ) {
+          if(getmasnum.get(0).getConfirm() ==0 || getmasnum.get(0).getConfirm() ==2) {
+          int confirm = getmasnum.get(0).getConfirm();
+          session.setAttribute("confirm", confirm);
+          System.out.println(confirm+"세션 confirm");
+          int masnum = getmasnum.get(0).getMas_num();
+          int unum = getmasnum.get(0).getU_num();
+          session.setAttribute("dbid", vo.getId());
+           session.setAttribute("u_num", unum);
+           session.setAttribute("mas_num", masnum);
+          
+          System.out.println(session.getAttribute("u_num") + "<--로그인하고 unum");
+          System.out.println(session.getAttribute("mas_num") + "<--로그인하고 masnum");
+          System.out.println(session.getAttribute("dbid") + "<--로그인하고 세션아이디");
+          mav.setViewName("redirect:/home");
+       }
+       }else if(result==1 && userservice.getMasnum(vo).get(0).getConfirm()  == 1){
+          int confirm = getmasnum.get(0).getConfirm();
+             session.setAttribute("confirm", confirm);
+             System.out.println(confirm+"세션 confirm");
+             response.setContentType("text/html; charset=UTF-8");
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('세대주 승인 후 로그인이 가능합니다.'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
+                out.flush();
+                out.close();         
+       }else {
+          System.out.println("durldurl");
+          response.setContentType("text/html; charset=UTF-8");
+             PrintWriter out = response.getWriter();
+             out.println("<script>alert('아이디 비밀번호를 다시 확인해주세요.'); location.href='/wherepay/login'; </script>"); //history.go(-1);        
+             out.flush();
+             out.close();         
+       }
+       return mav;
+    }
 	   
 	 //로그아웃 
 	   @RequestMapping(value = "/logout", method = RequestMethod.GET)
