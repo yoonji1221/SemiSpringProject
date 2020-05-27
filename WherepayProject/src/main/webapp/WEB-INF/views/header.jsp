@@ -41,7 +41,7 @@
 style="width: 260px;
     height: 90px;
     border-left-width: 50px;
-    margin-left: 300px;
+    margin-left: 250px;
     margin-bottom: 20px;
     padding-bottom: 30px;"></a>
         <!-- Uncomment below if you prefer to use an image logo -->

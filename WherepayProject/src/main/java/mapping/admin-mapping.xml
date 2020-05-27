@@ -214,4 +214,14 @@ insert into users
 #{mas_num}, #{familynum})
 </insert>
 
+<!-- 그룹 내의 구성원 정보 모두 가져오기 -->
+<select id="getGroup" resultType="uservo" parameterType = "int">
+select name, u_num from users where mas_num = #{mas_num} order by u_num
+</select>
+
+<!-- 사용자의 사용 총 금액 -->
+<select id="getPayment" resultType="paymentvo" parameterType = "int">
+select sum(money) as total, u_num from payment group by u_num, mas_num having mas_num = #{mas_num} order by u_num
+</select>
+
 </mapper>
