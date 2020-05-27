@@ -46,25 +46,25 @@
 
           <div class="progress">
             <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-              <span class="skill">미국 <i class="val">1,662,250명</i></span>
+              <span class="skill">미국 <i class="val">1,680,310명</i></span>
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-              <span class="skill">브라질 <i class="val">374,898명</i></span>
+              <span class="skill">브라질 <i class="val">391,222명</i></span>
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
-              <span class="skill">러시아 <i class="val">353,427명</i></span>
+              <span class="skill">러시아 <i class="val">362,342명</i></span>
             </div>
           </div>
 
           <div class="progress">
             <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%;">
-              <span class="skill">영국 <i class="val">261,184명</i></span>
+              <span class="skill">영국 <i class="val">265,227명</i></span>
             </div>
           </div>
 
