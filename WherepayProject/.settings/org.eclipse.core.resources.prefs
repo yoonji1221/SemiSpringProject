@@ -2,3 +2,8 @@ eclipse.preferences.version=1
 encoding//src/main/java/home/HomeController.java=UTF-8
 encoding//src/main/java/mypage/MypageController.java=UTF-8
 encoding//src/main/java/serviceinfo/InfoController.java=UTF-8
+<<<<<<< HEAD
+=======
+encoding//src/main/java/user/UserController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/test.jsp=UTF-8
+>>>>>>> branch 'master' of https://github.com/yoonji1221/SemiSpringProject.git

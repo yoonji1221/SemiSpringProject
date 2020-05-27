@@ -19,6 +19,9 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
+<script type="text/javascript" src="<?php echo G5_PLUGIN_URL ?>/jquery-ui/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="<?php echo G5_PLUGIN_URL ?>/jquery-ui/jquery-ui.css">
+
 <script type="text/javascript">
 function cardPopup() { 
 	var url = "/wherepay/searchMarket";
@@ -30,12 +33,14 @@ function zeroPopup() {
 	window.open(url, "b", "width=800, height=400, left=100, top=50"); 
 	}
 
+
 	$(function() {
 		$("#paydate").datepicker({
 			dateFormat : 'yy-mm-dd'
 		});
 	});
-
+	
+	
 
 </script>
 
@@ -46,9 +51,18 @@ font-size: large;
 td{
 font-size: medium;
 }
+
+.ui-datepicker { width: 270px; padding: 0; display: none; border: 0; margin-top: 10px;}
+.ui-widget.ui-widget-content { border: 0; border-radius: 3px; overflow: hidden; background: #fff; box-shadow: 0 0 8px rgba(0,0,0,0.3) }
+.ui-datepicker .ui-widget-header { position: relative; padding: 6px 0 6px 0; border: 0; background: #1e4356; color: #fff; border-radius: 0; }
 </style>
 </head>
 <body>
+
+ <c:forEach items="${userinfo }" var="userinfo">
+  <c:set var = "username" value="${userinfo.name }"/>
+ </c:forEach>
+         
 
 	<main id="main" style="margin-top: 0px;">
 
@@ -61,7 +75,7 @@ font-size: medium;
 					<div class="container">
 						<div class="section-title">
 							<div class="d-flex justify-content-between align-items-center">
-								<h2 style="color: #000080;">${userlist.name}님의  마이페이지</h2>
+								<h2 style="color:#000080; ">${username}님의 마이페이지</h2>
 							</div>
 						</div>
 					</div>
@@ -74,7 +88,7 @@ font-size: medium;
 
 				<div class="section-title">
 					<h2>가계부</h2>
-					<h3>${userlist.name }님의  정부재난지원금  사용  내역을 조회할 수 있습니다.</h3>
+					<h3>${userlist.name }님 가족의  정부재난지원금  사용  내역을 조회할 수 있습니다.</h3>
 					<h3>가족들과 함께 사용 내역을 공유해보세요.</h3>
 					<h3>잔액 조회를 통해 남은 지원금을 확인하세요.</h3>
 				</div>
@@ -177,20 +191,20 @@ font-size: medium;
 	
 	        <div class="row">
 	        
-		<form action="/wherepay/household/insertPayment?mas_num=${mas_num}" class="form-inline" method="get">
+		<form action="/wherepay/household/insertPayment?mas_num=${mas_num}" class="form-inline" id="input" method="get">
 			 
 			  <div class="form-group">
 				
 			    <label for="exampleInputDate" style="font-size: medium;"> 날짜 &nbsp;</label>
-				<input type="text" id="paydate" name="paydate" onclick="test();"  style="font-size: medium;"> &nbsp; &nbsp;		
+				<input type="text" id="paydate" name="paydate"> &nbsp; &nbsp;		
 			  </div>
 			  <div class="form-group">
 			    <label for="exampleInputMoney" style="font-size: medium;">금액 &nbsp;</label>
-				<input type="text" id="money" name="money" style="font-size: medium;"> <label for="exampleInputMoney" style="font-size: medium;">원</label> &nbsp; &nbsp;
+				<input type="text" id="money" name="money" > <label for="exampleInputMoney" style="font-size: medium;">원</label> &nbsp; &nbsp;
 			  </div>
 			   <div class="form-group">
 			    <label for="exampleInputStore" style="font-size: medium;">가게명 &nbsp;</label>
-				<input type="text" id="ppInput" name="store_name" placeholder="매장을 검색하세요" style="width:200px; font-size: medium;">&nbsp;&nbsp;
+				<input type="text" id="ppInput" name="store_name" placeholder="매장을 검색하세요" style="width:200px;">&nbsp;&nbsp;
 				 <c:choose>
 								<c:when test="${howtoget eq '신용카드/체크카드' }">
 									<c:set var="sam_num" value="1" />
@@ -214,7 +228,7 @@ font-size: medium;
 				 </div>
 				  <div class="form-group">
 				    &nbsp;&nbsp;<label for="exampleInputStore"  style="font-size: medium;">메모 &nbsp;</label>
-				     <input type="text" id="memo" name="memo"  style="width:200px; font-size: medium;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				     <input type="text" id="memo" name="memo"  style="width:200px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  </div>
 				  
 				  <input type="hidden" id="mas_num" name="mas_num" value='${mas_num}'>	
@@ -308,6 +322,29 @@ font-size: medium;
 			</div>
 			<!-- container -->
 		</section>
+		
+		
+		
+		
+		<section class="skills aos-init aos-animate" data-aos="fade-up" style="padding-top: 30px;padding-bottom: 30px;">
+		<div class="container">
+
+			<div class="section-title">
+				<h2>구성원 별 정부재난지원금 사용 내역 조회</h2>
+			</div>
+												
+		<section class="team aos-init aos-animate" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500" style="padding-left: 0px; padding-top: 0px;padding-bottom: 0px;">
+	      <div class="container">
+	
+	        <div class="row">
+	        
+	        <jsp:include page="/WEB-INF/views/test.jsp"></jsp:include>
+	        </div>
+	       </div>
+	      </section>
+	      
+	     </div>
+	     </section>
 	</main>
 
 

@@ -47,7 +47,7 @@ public class MypageController {
 	
 	//가계부
 	@RequestMapping("/household")
-	public ModelAndView myPageHousehold(@RequestParam("mas_num") int mas_num, @RequestParam("u_num") int u_num) {
+	public ModelAndView myPageHousehold(@RequestParam("mas_num") int mas_num, @RequestParam("u_num") int u_num, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		List<UserVO> list = mypageservice.getUserList(mas_num);
 		List<UserVO> detaillist = mypageservice.getFamilynum(mas_num);
@@ -67,6 +67,11 @@ public class MypageController {
 		int useMoney = Integer.parseInt(mypageservice.useMoney(mas_num));
 		System.out.println( mypageservice.useMoney(mas_num) +"_________");
 		mav.addObject("useMoney", useMoney);
+		
+		//로그인한 사용자 이름 가져오기
+		u_num = Integer.parseInt(session.getAttribute("u_num").toString());
+		List<UserVO> userinfo = mypageservice.getUser(u_num);
+		mav.addObject("userinfo", userinfo);
 	
 		mav.setViewName("myPage_household");
 		return mav;
@@ -148,9 +153,23 @@ public class MypageController {
 	
 	//test
 	@RequestMapping("/test")
-	public ModelAndView test() {
+	public ModelAndView test(HttpSession session) {
 		 ModelAndView mav = new ModelAndView();
-		 mav.setViewName("calender");
+		 //int mas_num = Integer.parseInt(session.getAttribute("mas_num").toString());
+		 //int u_num = Integer.parseInt(session.getAttribute("u_num").toString());
+		 
+		 List<UserVO> list = mypageservice.getGroup(1);
+		 mav.addObject("grouplist", list);
+		 
+		 for(int i = 0; i < list.size(); i++) {
+			 System.out.println(list.get(i).getU_num());			 
+		 }
+		 
+		 List<paymentVO> paylist = mypageservice.getPayment(1);
+		 mav.addObject("paylist", paylist);
+		 
+		 
+		 mav.setViewName("test");
 		 return mav;
 	}
 	
@@ -165,6 +184,6 @@ public class MypageController {
 		System.out.println("삭제?" + mas_num + " .,," + u_num + " .,," + pay_num);
 		return "redirect:/household?mas_num=" + mas_num +"&u_num=" + u_num;
 	}
-			
+		
 
 }

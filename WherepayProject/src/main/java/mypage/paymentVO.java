@@ -14,6 +14,7 @@ public class paymentVO {
 	String sam_name;
 	String z_name;
 	String name;
+	int total;
 	
 	public paymentVO() {};
 	
@@ -95,6 +96,16 @@ public class paymentVO {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	
+	
 	
 
 	
