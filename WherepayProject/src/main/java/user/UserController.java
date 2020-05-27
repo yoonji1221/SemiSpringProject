@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.regex.Pattern;
 
 @Controller
 public class UserController {
@@ -54,6 +55,7 @@ public class UserController {
 	      ModelAndView mav = new ModelAndView();
 	      
 	      System.out.println(result+"로그인 성공:1, 실패:0");
+	      
 	      
 	      if (result == 1 && confirm ==0 || confirm ==2) {
 	         session.setAttribute("dbid", vo.getId());
@@ -121,6 +123,7 @@ public class UserController {
 		vo.setJumin(jumin);
 		System.out.println(vo.getName()+"받아온 이름");
 		
+		
 		int alreayJoinChk = userservice.alreadyJoin(vo.getJumin());
 		System.out.println(alreayJoinChk+"제발!!!!!!!!!!!");
 		
@@ -175,9 +178,10 @@ public class UserController {
 	
 	//세대주 회원가입
 	@RequestMapping(value ="/joinmaster2", method = RequestMethod.POST)
-	public String join (UserVO vo, HttpServletResponse response, HttpServletRequest request) throws Exception {
-		
+	public String join (UserVO vo,  HttpServletResponse response, HttpServletRequest request) throws Exception {
+		int result=0;
 		String path = null;
+		
 		vo.setName(request.getParameter("name"));	//session으로 써도 되고 
 		vo.setJumin(request.getParameter("jumin"));	//parameter로 써도 됨
 
@@ -185,8 +189,32 @@ public class UserController {
 		System.out.println(request.getParameter("id"));
 		System.out.println(request.getParameter("pw"));
 	
+		
+		
+		//id pw phone 형식에 맞게 작성(정규표현식)
+		String regExpIdPw = "\\w+";
+		String regExpPhone = "(02|010)-\\d{3,4}-\\d{4}";
+	//	String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		String phone = request.getParameter("phone");
+		
+	//	boolean resultExpId = Pattern.matches(regExpIdPw, id);
+		boolean resultExpPw = Pattern.matches(regExpIdPw, pw);
+		boolean resultExpPhone = Pattern.matches(regExpPhone, phone);
+		
+		if (resultExpPw&&resultExpPhone) {
+			result = userservice.join(vo);
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+				out.println("<script>alert('형식에 맞게 작성해주세요'); location.href='/wherepay/joinmaster2'; </script>"); //history.go(-1);        
+	            out.flush();
+	            out.close();  
+	        path = "redirect:/wherepay/joinmaster2";
+		}
+		
 
-		int result = userservice.join(vo);		
+				
 		if (result ==1) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -241,10 +269,11 @@ public class UserController {
 		public String joinMember (UserVO vo, HttpServletResponse response, 
 				HttpServletRequest request, HttpSession session) throws Exception {
 			
+			int result =0;
 			String path = null;
 		
 			//session에 저장된 id를 받아와서 사용
-			String id = (String)session.getAttribute("sid");
+			String id = (String)session.getAttribute("sid");	//세대주 ID
 			System.out.println(id);	
 			
 			List<UserVO> list = userservice.autoSelect(id);
@@ -252,6 +281,24 @@ public class UserController {
 			vo.setFamilynum(list.get(0).getFamilynum());
 			vo.setHowtoget(list.get(0).getHowtoget());
 			vo.setMas_num(list.get(0).getMas_num());
+			
+			
+			//id pw phone 형식에 맞게 작성(정규표현식)
+			String regExpName = "\\W+";
+			String regExpIdPw = "\\w+";
+			String regExpPhone = "(02|010)-\\d{3,4}-\\d{4}";
+			String name = request.getParameter("name");
+		//	String mid = request.getParameter("id");	//구성원 ID
+			String pw = request.getParameter("pw");
+			String phone = request.getParameter("phone");
+			
+			boolean resultExpName = Pattern.matches(regExpName, name);
+		//	boolean resultExpId = Pattern.matches(regExpIdPw, mid);
+			boolean resultExpPw = Pattern.matches(regExpIdPw, pw);
+			boolean resultExpPhone = Pattern.matches(regExpPhone, phone);
+			
+			
+			
 			
 			//구성원 수 - 이미 정해진것
 			int familyNum=Integer.parseInt(list.get(0).getFamilynum());
@@ -261,9 +308,23 @@ public class UserController {
 			//이미 getMas_num - mas_num으로 가입한애들 수: 
 			int masCount = userservice.fnumCheck(id);
 			System.out.println(masCount+"이미 getMas_num - mas_num으로 가입한애들 수");
+		
 			
 			if (familyNum > masCount ) {				
-				int result = userservice.joinMember(vo);		
+				result = userservice.joinMember(vo);
+				
+				if (resultExpName  && resultExpPw && resultExpPhone) {
+					result = userservice.joinMember(vo);
+				}else {
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+						out.println("<script>alert('형식에 맞게 작성해주세요'); location.href='/wherepay/joinmaster2'; </script>"); //history.go(-1);        
+			            out.flush();
+			            out.close();  
+			        path = "redirect:/wherepay/joinmaster2";
+				}
+				
+				
 				if (result ==1) {
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter out = response.getWriter();
@@ -272,8 +333,7 @@ public class UserController {
 					out.close();  
 				//	path = "redirect:/wherepay/joinmember1";	
 				}
-			}
-			else {
+			}else {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('이미 회원가입을 모두 끝낸가족입니다.'); location.href='/wherepay/joinmember2'; </script>"); //history.go(-1);        
