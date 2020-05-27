@@ -54,8 +54,8 @@ public class UserController {
        List<UserVO> getmasnum = userservice.getMasnum(vo);
              
        ModelAndView mav = new ModelAndView();
-       System.out.println(userservice.getMasnum(vo).get(0).getConfirm()+"??????????????");
-       
+//       System.out.println(userservice.getMasnum(vo).get(0).getConfirm()+"??????????????");
+     
        
        System.out.println(result+"로그인 성공:1, 실패:0");
        
