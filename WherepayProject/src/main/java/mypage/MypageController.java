@@ -72,6 +72,14 @@ public class MypageController {
 		u_num = Integer.parseInt(session.getAttribute("u_num").toString());
 		List<UserVO> userinfo = mypageservice.getUser(u_num);
 		mav.addObject("userinfo", userinfo);
+		
+		
+		List<UserVO> list2 = mypageservice.getGroup(mas_num);
+		 mav.addObject("grouplist", list2);
+		 
+		 
+		 List<paymentVO> paylist = mypageservice.getPayment(mas_num);
+		 mav.addObject("paylist", paylist);
 	
 		mav.setViewName("myPage_household");
 		return mav;

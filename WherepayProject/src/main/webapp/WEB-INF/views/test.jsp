@@ -29,17 +29,19 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['이름', '사용 금액'],
-          [namelist[0], totallist[0]],
-          [namelist[1], totallist[1]],
-          [namelist[2], totallist[2]],
-          [namelist[3], totallist[3]]
+          [namelist[0], parseInt(totallist[0])],
+          [namelist[1], parseInt(totallist[1])],
+          [namelist[2], parseInt(totallist[2])],
+          [namelist[3], parseInt(totallist[3])]
         ]);
 
         var options = {
         		vAxis : {title : '액수'},
-        		hAxis : {title : '이'},
+        		//hAxis : {title : '이름'},
         		seriesType : 'bars',
-        		series : {5 : {type : 'line'}}
+        		hAxis: {format: 'decimal'},
+        		series : {5 : {type : 'line'}},
+        		 colors: ['#1e4356']
         };
 
         var chart = new google.charts.Bar(document.getElementById('top_x_div'));

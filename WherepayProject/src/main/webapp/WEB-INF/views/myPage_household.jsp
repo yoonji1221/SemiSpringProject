@@ -39,10 +39,55 @@ function zeroPopup() {
 			dateFormat : 'yy-mm-dd'
 		});
 	});
-	
-	
-
 </script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    
+      var u_numlist = new Array();
+      var namelist = new Array();
+      var totallist = new Array();
+      
+      <c:forEach items="${grouplist }" var="grouplist">
+      u_numlist.push("${grouplist.u_num }");
+      namelist.push("${grouplist.name }");      
+      </c:forEach>
+      
+      <c:forEach items="${paylist }" var="paylist">
+      totallist.push("${paylist.total }");  
+      </c:forEach>
+      
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['이름', '사용 금액'],
+          [namelist[0], parseInt(totallist[0])],
+          [namelist[1], parseInt(totallist[1])],
+          [namelist[2], parseInt(totallist[2])],
+          [namelist[3], parseInt(totallist[3])]
+        ]);
+
+        var options = {
+        		vAxis : {title : '액수',
+        			format: '#원',
+        			},
+        		hAxis : {title : '이름'},
+        		seriesType : 'bars',
+        		hAxis: {format: 'decimal'},
+        		series : {5 : {type : 'line'}},
+        		 colors: ['#1e4356']
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+    
+    
 
 <style>
 th{
@@ -331,14 +376,15 @@ font-size: medium;
 
 			<div class="section-title">
 				<h2>구성원 별 정부재난지원금 사용 내역 조회</h2>
+				
+				<div id="top_x_div" style="width: 800px; height: 600px;"></div>
 			</div>
 												
 		<section class="team aos-init aos-animate" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500" style="padding-left: 0px; padding-top: 0px;padding-bottom: 0px;">
 	      <div class="container">
 	
 	        <div class="row">
-	        
-	        <jsp:include page="/WEB-INF/views/test.jsp"></jsp:include>
+	        	
 	        </div>
 	       </div>
 	      </section>
